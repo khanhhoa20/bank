@@ -10,5 +10,6 @@ interface IOperatorFunction {
 	void withdraw(String bankAccountID, Double withdrawMoney);
 
 	void deposit(String bankAccountID, Double depositMoney);
-
+	
+	
 }
