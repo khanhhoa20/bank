@@ -11,5 +11,6 @@ interface IOperatorFunction {
 
 	void deposit(String bankAccountID, Double depositMoney);
 	
+	void login(String username, String password);
 	
 }
