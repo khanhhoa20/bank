@@ -7,9 +7,11 @@ interface IOperatorFunction {
 
 	void updateCusList(String idCard, String username, String phone, String address, String email);
 
-	//void withdraw(String bankAccountID, Double withdrawMoney);-- synchronized method
+	// synchronized method
+	void withdraw(String bankAccountID, Double withdrawMoney);
 
-//	void deposit(String bankAccountID, Double depositMoney); -- synchronized method
+	// synchronized method
+	void deposit(String bankAccountID, Double depositMoney); 
 	
 	void login(String username, String password);
 	
