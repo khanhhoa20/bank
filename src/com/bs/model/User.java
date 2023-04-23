@@ -1,7 +1,7 @@
 package com.bs.model;
 
 public class User {
-	private Integer id;
+	private Long id;
 	private String user_name;
 	private String user_pass;
 	private String role;
@@ -10,7 +10,7 @@ public class User {
 		
 	}
 
-	public User(Integer id, String user_name, String user_pass, String role) {
+	public User(Long id, String user_name, String user_pass, String role) {
 
 		this.id = id;
 		this.user_name = user_name;
@@ -18,11 +18,11 @@ public class User {
 		this.role = role;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
