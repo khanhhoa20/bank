@@ -15,10 +15,10 @@ public class AddUserController {
 		System.out.println("Enter role");
 		String role = sc.nextLine();
 		boolean result = dao.addUser(name, pass, role);
-		
-		if(result) {
+
+		if (result) {
 			System.out.println("add user success");
-		}else {
+		} else {
 			System.out.println("sth wrong");
 		}
 	}
