@@ -2,7 +2,7 @@ package com.bs.model;
 
 import java.util.Date;
 
-public class Customer extends User {
+public class Customer {
 	private long customerId;
 	private String customerName;
 	private String address;
@@ -10,7 +10,7 @@ public class Customer extends User {
 	private String email;
 	private long nationalId;
 	private Date dateOfBirth;
-	private User user;
+	private long user_id;
 	
 	public long getCustomerId() {
 		return customerId;
@@ -57,8 +57,7 @@ public class Customer extends User {
 	
 	public Customer() {}
 	
-	public Customer(long customerId, String customerName, String address, String phoneNumber, String email, long nationalId, Date dateOfBirth, User user) {
-		super(user.getId(), user.getUser_name(), user.getUser_pass(), user.getRole());
+	public Customer(long customerId, String customerName, String address, String phoneNumber, String email, long nationalId, Date dateOfBirth, long user_id) {
 		this.customerId = customerId;
 		this.customerName = customerName;
 		this.address = address;
@@ -66,7 +65,7 @@ public class Customer extends User {
 		this.email = email;
 		this.nationalId = nationalId;
 		this.dateOfBirth = dateOfBirth;
-		this.user = user;
+		this.user_id = user_id;
 	}
 	
 	

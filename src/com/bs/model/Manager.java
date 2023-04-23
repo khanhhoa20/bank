@@ -3,8 +3,8 @@ package com.bs.model;
 public class Manager {
 	private long id;
 	private String man_phone, man_address, man_name, man_email;
-	private User user;
-	private Department department;
+	private long user_id;
+	private long department_id;
 	/**
 	 * @return the id
 	 */
@@ -83,42 +83,42 @@ public class Manager {
 	/**
 	 * @return the user
 	 */
-	public User getUser() {
-		return user;
+	public long getUser_id() {
+		return user_id;
 	}
 	/**
 	 * @param user the user to set
 	 * @throws Exception 
 	 */
-	public void setUser(User user) throws Exception {
-		if(user.getId()==0 || user == null)
+	public void setUser_id(long user_id) throws Exception {
+		if(user_id==0)
 			throw new Exception("User is not found!");
-		this.user = user;
+		this.user_id = user_id;
 	}
 	/**
 	 * @return the department
 	 */
-	public Department getDepartment() {
-		return department;
+	public long getDepartment_id() {
+		return department_id;
 	}
 	/**
 	 * @param department the department to set
 	 * @throws Exception 
 	 */
-	public void setDepartment(Department department) throws Exception {
-		if(department.getId()==0 ||department==null)
+	public void setDepartment_id(long department_id) throws Exception {
+		if(department_id==0)
 			throw new Exception("Department not found!");
-		this.department = department;
+		this.department_id = department_id;
 	}
-	public Manager(long id, String man_phone, String man_address, String man_name, String man_email, User user,
-			Department department) throws Exception {
+	public Manager(long id, String man_phone, String man_address, String man_name, String man_email, long user_id,
+			long department_id) throws Exception {
 		setId(id);
 		setMan_address(man_address);
 		setMan_email(man_email);
 		setMan_name(man_name);
 		setMan_phone(man_phone);
-		setDepartment(department);
-		setUser(user);
+		setDepartment_id(department_id);
+		setUser_id(user_id);
 	}
 	
 	

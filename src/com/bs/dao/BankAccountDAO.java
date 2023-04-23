@@ -4,14 +4,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import config.DBConnection;
-import model.BankAccount_Model;
+import com.bs.util.DBUtil;
 
 public class BankAccountDAO {
 	Connection connection;
 public BankAccountDAO() {
 	try {
-		connection =DBConnection.getConnection();
+		connection =DBUtil.getConnection();
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

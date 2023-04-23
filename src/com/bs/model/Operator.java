@@ -1,7 +1,7 @@
 package com.bs.model;
 
-public class Operator extends User {
-	private int id;
+public class Operator {
+	private long id;
 	private String oper_phone;
 	private String oper_address;
 	private String oper_name;
@@ -22,7 +22,7 @@ public class Operator extends User {
 		this.user_id = user_id;
 		this.department_id = department_id;
 	}
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 	public void setId(int id) {
