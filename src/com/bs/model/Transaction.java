@@ -1,5 +1,3 @@
-package com.bs.model;
-
 import java.util.*;
 
 public class Transaction{

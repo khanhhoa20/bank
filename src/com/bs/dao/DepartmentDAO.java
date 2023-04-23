@@ -1,109 +1,106 @@
 package com.bs.dao;
 
 import java.util.*;
-
-import com.bs.model.Department;
-import com.bs.util.DBUtil;
-
 import java.sql.*;
 
 public class DepartmentDAO {
 	Connection connection;
-	PreparedStatement preparedStatement;
-	ResultSet resultSet;
-
-	public List<Department> getAllDepartment() {
+	PrepareStatement preparedStatement;
+	ResultSet resultSet; 
+	
+	public List<Department> getAllDepartment(){
 		connection = null;
-		List<Department> departmentList = new ArrayList<Department>();
-		Department department = null;
+		 List<Department> departmentList = new ArrayList<Department>();
+		 Department department = null;
 		try {
 			String sql = "SELECT * FROM department";
-			connection = DBUtil.getConnection();
+			connection = DBConnection.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
 			resultSet = preparedStatement.executeQuery();
-			while (resultSet.next()) {
-				department = new Department(resultSet.getLong(1), resultSet.getString(2));
+			while(resultSet.next()) {
+				department  = new Department(resultSet.getString(1));
 				departmentList.add(department);
 			}
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e){
 			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
-			if (connection != null)
-				try {
+			if(connection!=null)
+			try {
 					connection.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
-				}
-		}
-		return departmentList;
+					}
+			}
+        return departmentList;
 	}
-
-	public void insertDepartment() {
+	
+	public void insertDepartment(){
 		connection = null;
 		Department department = null;
 		try {
-			connection = DBUtil.getConnection();
+			connection = DBConection.getConnection();
 			String sql = "INSERT INTO department VALUES(?)";
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, department.getName());
+			preparedStatement.setString(1,department.getName());
 			int result = preparedStatement.executeUpdate();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
-			if (connection != null)
-				try {
+			if(connection!=null)
+			try {
 					connection.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
-				}
-		}
+					}
+			}
 	}
-
+	
 	public void updateDepartment() {
 		connection = null;
 		Department department = null;
 		try {
-			connection = DBUtil.getConnection();
+			connection = DBConection.getConnection();
 			String sql = "UPDATE department SET department_name=?  WHERE id=?";
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setLong(1, department.getId());
-			preparedStatement.setString(2, department.getName());
+			preparedStatement.setInteger(1,department.getId());
+			preparedStatement.setString(2,department.getName());
 			int result = preparedStatement.executeUpdate();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
-			if (connection != null)
-				try {
+			if(connection!=null)
+			try {
 					connection.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
-				}
-		}
+					}
+			}
 	}
-
+	
 	public boolean deleteDepartment() {
 		Department department = null;
 		try {
-			String sql = "DELETE FROM department WHERE id =?";
-			connection = DBUtil.getConnection();
+			String sql ="DELETE FROM department WHERE id =?";
+			connection = DBConnection.getConnection();
 			Statement statement = connection.createStatement();
-			int result = statement.executeUpdate(sql);
+			int result = statement.executeUpdate(sql)
 			if (result > 0) {
 				return true;
 			}
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e){
 			System.out.println(e);
 		} finally {
-			if (connection != null)
-				try {
+			if(connection!=null)
+			try {
 					connection.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
-				}
-		}
+					}
+			}
 		return false;
 	}
 }
+

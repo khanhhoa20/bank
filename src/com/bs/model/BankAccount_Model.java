@@ -1,4 +1,4 @@
-package com.bs.model;
+package model;
 
 public class BankAccount_Model {
 private long id;

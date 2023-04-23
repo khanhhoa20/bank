@@ -1,20 +1,20 @@
 package com.bs.model;
 
 public class Department {
-	long id;
+	Integer id;
 	String department_name;
 
-	public Department(long id, String department_name) {
+	public Department(Integer id, String department_name) {
 
 		this.id = id;
 		this.department_name = department_name;
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
