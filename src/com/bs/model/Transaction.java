@@ -1,24 +1,24 @@
 package com.bs.model;
 
-import java.util.*;
+import java.util.Date;
 
-public class Transaction{
-	private long id;
+public class Transaction {
+	private Long transactionId;
 	private String transactionType;
 	private double transactionAmount;
 	private Date transactionDate;
 	private double beforeTransaction;
 	private double afterTransaction;
-	private long bankAccountId;
-	
+	private Long bankAccountId;
+
 	public Transaction() {
-		
+
 	}
 
-	public Transaction(long id, String transactionType, double transactionAmount, Date transactionDate,
-			double beforeTransaction, double afterTransaction, long bankAccountId) {
-		super();
-		this.id = id;
+	public Transaction(Long transactionId, String transactionType, double transactionAmount, Date transactionDate,
+			double beforeTransaction, double afterTransaction, Long bankAccountId) {
+
+		this.transactionId = transactionId;
 		this.transactionType = transactionType;
 		this.transactionAmount = transactionAmount;
 		this.transactionDate = transactionDate;
@@ -27,23 +27,12 @@ public class Transaction{
 		this.bankAccountId = bankAccountId;
 	}
 
-	public Transaction(String transactionType, double transactionAmount, Date transactionDate, double beforeTransaction,
-			double afterTransaction, long bankAccountId) {
-		super();
-		this.transactionType = transactionType;
-		this.transactionAmount = transactionAmount;
-		this.transactionDate = transactionDate;
-		this.beforeTransaction = beforeTransaction;
-		this.afterTransaction = afterTransaction;
-		this.bankAccountId = bankAccountId;
+	public Long getTransactionId() {
+		return transactionId;
 	}
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
+	public void setTransactionId(Long transactionId) {
+		this.transactionId = transactionId;
 	}
 
 	public String getTransactionType() {
@@ -86,13 +75,12 @@ public class Transaction{
 		this.afterTransaction = afterTransaction;
 	}
 
-	public long getBankAccountId() {
+	public Long getBankAccountId() {
 		return bankAccountId;
 	}
 
-	public void setBankAccountId(long bankAccountId) {
+	public void setBankAccountId(Long bankAccountId) {
 		this.bankAccountId = bankAccountId;
 	}
-	
-	
+
 }
