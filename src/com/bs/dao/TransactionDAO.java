@@ -1,4 +1,5 @@
-package test;
+package com.bs.dao;
+
 import java.util.*;
 import java.sql.*;
 
