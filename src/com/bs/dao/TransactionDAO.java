@@ -13,7 +13,7 @@ public class TransactionDAO {
 		 List<Transaction> transactionList = new ArrayList<Transaction>();
         Transaction transaction = null;
 		try {
-			connection = DBConnection.getConnection();
+			connection = DBUtil.getConnection();
 			preparedStatement = connection.prepareStatement("SELECT * FROM transaction");
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
@@ -37,7 +37,7 @@ public class TransactionDAO {
 	public Transaction getTransaction(long id) {
 		Transaction transaction = null;
 		try {
-			connection = DBConnection.getConnection();
+			connection = DBUtil.getConnection();
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery("SELECT * FROM transaction WHERE id = "+id);
 			if (rs.next()) {
@@ -60,7 +60,7 @@ public class TransactionDAO {
 	
 	public void InsertTransaction(Transaction transaction) {
 		try {
-			connection = DBConnection.getConnection();
+			connection = DBUtil.getConnection();
 			preparedStatement = connection.prepareStatement("INSERT INTO transaction values (default, ?, ?, ?, ?, ?, ?)");
 
 			preparedStatement.setString(1, transaction.getTransaction_type());
@@ -89,7 +89,7 @@ public class TransactionDAO {
 		//write your code here
 		Transaction transaction = null;
 		try {
-			connection = DBConnection.getConnection();
+			connection = DBUtil.getConnection();
 			Statement statement = connection.createStatement();
 			int rs = statement.executeUpdate("DELETE FROM transaction WHERE id = "+id);
 			if (rs > 0) {
