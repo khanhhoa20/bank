@@ -1,11 +1,12 @@
 package com.bs.dao;
 
+import com.bs.util.DBUtil;
 import java.util.*;
 import java.sql.*;
 
 public class TransactionDAO {
 	Connection connection;
-	PrepareStatement preparedStatement;
+	PreparedStatement preparedStatement;
 	ResultSet resultSet;
 	
 	public List<Transaction> getAllTransaction() {
