@@ -55,6 +55,13 @@ public class Customer extends User {
 		this.dateOfBirth = dateOfBirth;
 	}
 	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 	public Customer() {}
 	
 	public Customer(long customerId, String customerName, String address, String phoneNumber, String email, long nationalId, Date dateOfBirth, User user) {
@@ -69,5 +76,15 @@ public class Customer extends User {
 		this.user = user;
 	}
 	
+	public Customer(long customerId, String customerName, String address, String phoneNumber, String email, long nationalId, Date dateOfBirth) {
+		super();
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.nationalId = nationalId;
+		this.dateOfBirth = dateOfBirth;
+	}
 	
 }
