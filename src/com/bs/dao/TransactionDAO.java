@@ -1,5 +1,6 @@
 package com.bs.dao;
 
+import com.bs.model.*;
 import com.bs.util.DBUtil;
 import java.util.*;
 import java.sql.*;
