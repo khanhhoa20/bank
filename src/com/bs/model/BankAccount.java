@@ -4,13 +4,13 @@ public class BankAccount {
 	private Long bankAccountId;
 	private Long balance;
 	private String bankName;
-	private String cusId;
+	private Long cusId;
 
 	public BankAccount() {
 
 	}
 
-	public BankAccount(Long bankAccountId, Long balance, String bankName, String cusId) {
+	public BankAccount(Long bankAccountId, Long balance, String bankName, Long cusId) {
 
 		this.bankAccountId = bankAccountId;
 		this.balance = balance;
@@ -42,11 +42,11 @@ public class BankAccount {
 		this.bankName = bankName;
 	}
 
-	public String getCusId() {
+	public Long getCusId() {
 		return cusId;
 	}
 
-	public void setCusId(String cusId) {
+	public void setCusId(Long cusId) {
 		this.cusId = cusId;
 	}
 
