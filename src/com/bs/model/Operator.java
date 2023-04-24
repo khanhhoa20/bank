@@ -1,61 +1,79 @@
 package com.bs.model;
 
 public class Operator extends User {
-	private int id;
-	private String oper_phone;
-	private String oper_address;
-	private String oper_name;
-	private String user_id;
-	private int department_id;
+	private Integer id;
+	private String operPhone;
+	private String operAddress;
+	private String operName;
+	private String userId;
+	private Integer departmentId;
 	
 	public Operator() {
 		
 	}
+
 	
-	public Operator(int id, String oper_phone, String oper_address, String oper_name, String user_id,
-			int department_id) {
+	
+	public Operator(Integer id, String operPhone, String operAddress, String operName, String userId,
+			Integer departmentId) {
 		super();
 		this.id = id;
-		this.oper_phone = oper_phone;
-		this.oper_address = oper_address;
-		this.oper_name = oper_name;
-		this.user_id = user_id;
-		this.department_id = department_id;
+		this.operPhone = operPhone;
+		this.operAddress = operAddress;
+		this.operName = operName;
+		this.userId = userId;
+		this.departmentId = departmentId;
 	}
+
+
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getOper_phone() {
-		return oper_phone;
+
+	public String getOperPhone() {
+		return operPhone;
 	}
-	public void setOper_phone(String oper_phone) {
-		this.oper_phone = oper_phone;
+
+	public void setOperPhone(String operPhone) {
+		this.operPhone = operPhone;
 	}
-	public String getOper_address() {
-		return oper_address;
+
+	public String getOperAddress() {
+		return operAddress;
 	}
-	public void setOper_address(String oper_address) {
-		this.oper_address = oper_address;
+
+	public void setOperAddress(String operAddress) {
+		this.operAddress = operAddress;
 	}
-	public String getOper_name() {
-		return oper_name;
+
+	public String getOperName() {
+		return operName;
 	}
-	public void setOper_name(String oper_name) {
-		this.oper_name = oper_name;
+
+	public void setOperName(String operName) {
+		this.operName = operName;
 	}
-	public String getUser_id() {
-		return user_id;
+
+	public String getUserId() {
+		return userId;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public int getDepartment_id() {
-		return department_id;
+
+	public int getDepartmentId() {
+		return departmentId;
 	}
-	public void setDepartment_id(int department_id) {
-		this.department_id = department_id;
+
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
 	}
+	
+	
 }
