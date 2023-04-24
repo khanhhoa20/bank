@@ -15,36 +15,36 @@ public class User {
 		
 	}
 
-	public User(Long id, String username, String pass, String role) {
-
-		this.userID = id;
-		this.userName = username;
-		this.userPass = pass;
+	public User(Long userID, String userName, String userPass, String role) {
+		super();
+		this.userID = userID;
+		this.userName = userName;
+		this.userPass = userPass;
 		this.role = role;
 	}
 
-	public Long getId() {
+	public Long getUserID() {
 		return userID;
 	}
 
-	public void setId(Long id) {
-		this.userID = id;
+	public void setUserID(Long userID) {
+		this.userID = userID;
 	}
 
-	public String getUsername() {
+	public String getUserName() {
 		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.userName = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getPass() {
+	public String getUserPass() {
 		return userPass;
 	}
 
-	public void setPass(String pass) {
-		this.userPass = pass;
+	public void setUserPass(String userPass) {
+		this.userPass = userPass;
 	}
 
 	public String getRole() {
@@ -54,6 +54,9 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	
+
 	
 
 }
