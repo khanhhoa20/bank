@@ -65,12 +65,12 @@ public class TransactionDAO {
 			connection = DBUtil.getConnection();
 			preparedStatement = connection.prepareStatement("INSERT INTO transaction values (default, ?, ?, ?, ?, ?, ?)");
 
-			preparedStatement.setString(1, transaction.getTransaction_type());
-			preparedStatement.setDouble(2, transaction.getTransaction_amount());
-			preparedStatement.setDate(3, transaction.getTransaction_date());
-			preparedStatement.setDouble(4, transaction.getBefore_transaction());
-			preparedStatement.setDouble(5, transaction.getAfter_transaction());
-			preparedStatement.setLong(6, transaction.getBank_account_id());
+			preparedStatement.setString(1, transaction.getTransactionType());
+			preparedStatement.setDouble(2, transaction.getTransactionAmount());
+			preparedStatement.setDate(3, transaction.getTransactionDate());
+			preparedStatement.setDouble(4, transaction.getBeforeTransaction());
+			preparedStatement.setDouble(5, transaction.getAfterTransaction());
+			preparedStatement.setLong(6, transaction.getBankAccountId());
 			
 			int res = preparedStatement.executeUpdate();
 			connection.commit();
