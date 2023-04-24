@@ -4,36 +4,38 @@ import java.util.*;
 
 public class Transaction{
 	private long id;
-	private String transaction_type;
-	private double transaction_amount;
-	private Date transaction_date;
-	private double before_transaction;
-	private double after_transaction;
-	private long bank_account_id;
+	private String transactionType;
+	private double transactionAmount;
+	private Date transactionDate;
+	private double beforeTransaction;
+	private double afterTransaction;
+	private long bankAccountId;
 	
 	public Transaction() {
 		
 	}
-	
-	public Transaction(String transaction_type, double transaction_amount, Date transaction_date,
-			double before_transaction, double after_transaction, long bank_account_id) {
-		this.transaction_type = transaction_type;
-		this.transaction_amount = transaction_amount;
-		this.transaction_date = transaction_date;
-		this.before_transaction = before_transaction;
-		this.after_transaction = after_transaction;
-		this.bank_account_id = bank_account_id;
+
+	public Transaction(long id, String transactionType, double transactionAmount, Date transactionDate,
+			double beforeTransaction, double afterTransaction, long bankAccountId) {
+		super();
+		this.id = id;
+		this.transactionType = transactionType;
+		this.transactionAmount = transactionAmount;
+		this.transactionDate = transactionDate;
+		this.beforeTransaction = beforeTransaction;
+		this.afterTransaction = afterTransaction;
+		this.bankAccountId = bankAccountId;
 	}
 
-	public Transaction(long id, String transaction_type, double transaction_amount, Date transaction_date,
-			double before_transaction, double after_transaction, long bank_account_id) {
-		this.id = id;
-		this.transaction_type = transaction_type;
-		this.transaction_amount = transaction_amount;
-		this.transaction_date = transaction_date;
-		this.before_transaction = before_transaction;
-		this.after_transaction = after_transaction;
-		this.bank_account_id = bank_account_id;
+	public Transaction(String transactionType, double transactionAmount, Date transactionDate, double beforeTransaction,
+			double afterTransaction, long bankAccountId) {
+		super();
+		this.transactionType = transactionType;
+		this.transactionAmount = transactionAmount;
+		this.transactionDate = transactionDate;
+		this.beforeTransaction = beforeTransaction;
+		this.afterTransaction = afterTransaction;
+		this.bankAccountId = bankAccountId;
 	}
 
 	public long getId() {
@@ -44,52 +46,52 @@ public class Transaction{
 		this.id = id;
 	}
 
-	public String getTransaction_type() {
-		return transaction_type;
+	public String getTransactionType() {
+		return transactionType;
 	}
 
-	public void setTransaction_type(String transaction_type) {
-		this.transaction_type = transaction_type;
+	public void setTransactionType(String transactionType) {
+		this.transactionType = transactionType;
 	}
 
-	public double getTransaction_amount() {
-		return transaction_amount;
+	public double getTransactionAmount() {
+		return transactionAmount;
 	}
 
-	public void setTransaction_amount(double transaction_amount) {
-		this.transaction_amount = transaction_amount;
+	public void setTransactionAmount(double transactionAmount) {
+		this.transactionAmount = transactionAmount;
 	}
 
-	public Date getTransaction_date() {
-		return transaction_date;
+	public Date getTransactionDate() {
+		return transactionDate;
 	}
 
-	public void setTransaction_date(Date transaction_date) {
-		this.transaction_date = transaction_date;
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
 	}
 
-	public double getBefore_transaction() {
-		return before_transaction;
+	public double getBeforeTransaction() {
+		return beforeTransaction;
 	}
 
-	public void setBefore_transaction(double before_transaction) {
-		this.before_transaction = before_transaction;
+	public void setBeforeTransaction(double beforeTransaction) {
+		this.beforeTransaction = beforeTransaction;
 	}
 
-	public double getAfter_transaction() {
-		return after_transaction;
+	public double getAfterTransaction() {
+		return afterTransaction;
 	}
 
-	public void setAfter_transaction(double after_transaction) {
-		this.after_transaction = after_transaction;
+	public void setAfterTransaction(double afterTransaction) {
+		this.afterTransaction = afterTransaction;
 	}
 
-	public long getBank_account_id() {
-		return bank_account_id;
+	public long getBankAccountId() {
+		return bankAccountId;
 	}
 
-	public void setBank_account_id(long bank_account_id) {
-		this.bank_account_id = bank_account_id;
+	public void setBankAccountId(long bankAccountId) {
+		this.bankAccountId = bankAccountId;
 	}
 	
 	
