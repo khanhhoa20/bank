@@ -15,11 +15,11 @@ public class User {
 		
 	}
 
-	public User(Long id, String user_name, String user_pass, String role) {
+	public User(Long id, String username, String pass, String role) {
 
 		this.id = id;
-		this.username = user_name;
-		this.pass = user_pass;
+		this.username = username;
+		this.pass = pass;
 		this.role = role;
 	}
 
@@ -31,20 +31,20 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUser_name() {
+	public String getUsername() {
 		return username;
 	}
 
-	public void setUser_name(String user_name) {
-		this.username = user_name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getUser_pass() {
+	public String getPass() {
 		return pass;
 	}
 
-	public void setUser_pass(String user_pass) {
-		this.pass = user_pass;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
 	public String getRole() {
