@@ -1,9 +1,14 @@
 package com.bs.model;
 
+
+/**
+ * @author khanh hoa
+ *
+ */
 public class User {
 	private Long id;
-	private String user_name;
-	private String user_pass;
+	private String username;
+	private String pass;
 	private String role;
 
 	public User() {
@@ -13,8 +18,8 @@ public class User {
 	public User(Long id, String user_name, String user_pass, String role) {
 
 		this.id = id;
-		this.user_name = user_name;
-		this.user_pass = user_pass;
+		this.username = user_name;
+		this.pass = user_pass;
 		this.role = role;
 	}
 
@@ -27,19 +32,19 @@ public class User {
 	}
 
 	public String getUser_name() {
-		return user_name;
+		return username;
 	}
 
 	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+		this.username = user_name;
 	}
 
 	public String getUser_pass() {
-		return user_pass;
+		return pass;
 	}
 
 	public void setUser_pass(String user_pass) {
-		this.user_pass = user_pass;
+		this.pass = user_pass;
 	}
 
 	public String getRole() {
