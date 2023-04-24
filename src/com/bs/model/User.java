@@ -6,9 +6,9 @@ package com.bs.model;
  *
  */
 public class User {
-	private Long id;
-	private String username;
-	private String pass;
+	private Long userID;
+	private String userName;
+	private String userPass;
 	private String role;
 
 	public User() {
@@ -17,34 +17,34 @@ public class User {
 
 	public User(Long id, String username, String pass, String role) {
 
-		this.id = id;
-		this.username = username;
-		this.pass = pass;
+		this.userID = id;
+		this.userName = username;
+		this.userPass = pass;
 		this.role = role;
 	}
 
 	public Long getId() {
-		return id;
+		return userID;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.userID = id;
 	}
 
 	public String getUsername() {
-		return username;
+		return userName;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.userName = username;
 	}
 
 	public String getPass() {
-		return pass;
+		return userPass;
 	}
 
 	public void setPass(String pass) {
-		this.pass = pass;
+		this.userPass = pass;
 	}
 
 	public String getRole() {
