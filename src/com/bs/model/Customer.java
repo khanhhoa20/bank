@@ -65,7 +65,7 @@ public class Customer extends User {
 	public Customer() {}
 	
 	public Customer(long customerId, String customerName, String address, String phoneNumber, String email, long nationalId, Date dateOfBirth, User user) {
-		super(user.getId(), user.getUser_name(), user.getUser_pass(), user.getRole());
+		super(user.getId(), user.getUsername(), user.getPass(), user.getRole());
 		this.customerId = customerId;
 		this.customerName = customerName;
 		this.address = address;
