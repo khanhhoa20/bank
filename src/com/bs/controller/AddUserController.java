@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 import com.bs.dao.UserDAO;
 
+/**
+ * @author khánh hòa
+ *
+ */
 public class AddUserController {
 	public static void addUser() {
 		UserDAO dao = new UserDAO();

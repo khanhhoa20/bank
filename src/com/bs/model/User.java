@@ -55,6 +55,11 @@ public class User {
 		this.role = role;
 	}
 
+	@Override
+	public String toString() {
+		return "User [userID=" + userID + ", userName=" + userName + ", userPass=" + userPass + ", role=" + role + "]";
+	}
+
 	
 
 	

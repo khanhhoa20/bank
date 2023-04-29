@@ -1,105 +1,76 @@
 package com.bs.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import com.bs.model.Customer;
+import com.bs.model.User;
 import com.bs.util.DBUtil;
 
 public class CustomerDAO {
-	Connection connection = null;
-	PreparedStatement st;
-	ResultSet rs;
-	
-	public ArrayList<Customer> getAllCustomer(){
-		ArrayList<Customer> customerList = new ArrayList<Customer>();
-		if (connection==null) {
-			connection = DBUtil.getConnection();
-		}
+	Connection connection;
+	PreparedStatement preparedStatement;
+	ResultSet resultSet;
+	int result;
+
+	public CustomerDAO() {
+		connection = DBUtil.getConnection();
+	}
+
+	public int addCustomer(Customer customer) {
 		try {
-			st = connection.prepareStatement("SELECT * FROM customer");
-			rs = st.executeQuery();
-			while(rs.next()) {
-				customerList.add(new Customer(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getLong(6), rs.getTimestamp(7)));
+			if (connection == null || connection.isClosed()) {
+				connection = DBUtil.getConnection();
 			}
+
+			preparedStatement = connection.prepareStatement(ICustomerQuery.INSERT_QUERY);
+
+			preparedStatement.setString(1, customer.getCustomerName());
+			preparedStatement.setString(2, customer.getCustomerPhone());
+			preparedStatement.setLong(3, customer.getCustomerNationalId());
+			preparedStatement.setDate(4, new java.sql.Date(customer.getCustomerDob().getTime()));
+			preparedStatement.setString(5, customer.getCustomerEmail());
+			preparedStatement.setString(6, customer.getCustomerAddress());
+			preparedStatement.setLong(7, customer.getUser().getUserID());
+			
+			result = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		if (connection!=null) {
-			try {
-				rs.close();
-				st.close();
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
 			}
 		}
-		return customerList;
+		return result;
 	}
 	
-	public void createCustomer(Customer customer) {
-		if (connection == null) {
-			connection = DBUtil.getConnection();
-		}
+	public Customer findCustomerID(String phone) {
+		Customer customer = null;
 		try {
-			st = connection.prepareStatement("INSERT INTO customer(cus_name, cus_phone, cus_national_id, cus_date_of_birth, cus_email, cus_address, user_id) VALUES(?,?,?,?,?,?,?)");
-			st.setString(1, customer.getCustomerName());
-			st.setString(2, customer.getPhoneNumber());
-			st.setLong(3, customer.getCustomerId());
-			st.setTimestamp(4, new java.sql.Timestamp(customer.getDateOfBirth().getTime()));
-			st.setString(5, customer.getEmail());
-			st.setString(6, customer.getAddress());
-			st.setLong(7, customer.getUser().getId());
-			int result = st.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		if (connection!=null) {
-			try {
-				st.close();
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (connection == null || connection.isClosed()) {
+				connection = DBUtil.getConnection();
 			}
-		}
-	}
-	
-	public void updateCustomerById(Customer customer) {
-		if (connection == null) {
-			connection = DBUtil.getConnection();
-		}
-		try {
-			st = connection.prepareStatement("UPDATE customer SET cus_name=?, cus_phone=?, cus_national_id=?, cus_date_of_birth=?, cus_email=?, cus_address=? WHERE id = ?");
-			st.setString(1, customer.getCustomerName());
-			st.setString(2, customer.getPhoneNumber());
-			st.setLong(3, customer.getNationalId());
-			st.setTime(4, new java.sql.Time(customer.getDateOfBirth().getTime()));
-			st.setString(5, customer.getEmail());
-			st.setString(6, customer.getAddress());
-			st.setLong(7, customer.getId());
-			int result = st.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		if (connection!=null) {
-			try {
-				st.close();
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+			preparedStatement = connection.prepareStatement(ICustomerQuery.FIND_CUSTOMER);
+			preparedStatement.setString(1, phone);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				customer = new Customer();
+				customer.setCustomerId(resultSet.getLong(1));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection();
 		}
+		return customer;
 	}
 }
