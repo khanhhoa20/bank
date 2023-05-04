@@ -11,9 +11,11 @@ import com.bs.dao.UserDAO;
 public class LoginController {
 	public static void login() {
 		UserDAO userDAO = new UserDAO();
-		System.out.println("Enter name");
+		// phone number by default
+		System.out.println("Enter username");
 		Scanner sc = new Scanner(System.in);
 		String name = sc.nextLine();
+		// default: 123
 		System.out.println("Enter password");
 		String pass = sc.nextLine();
 		String role = userDAO.login(name, pass);

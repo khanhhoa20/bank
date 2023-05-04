@@ -38,22 +38,36 @@ public class CreateBankAccountController {
 		System.out.println("Enter customer address");
 		String address = sc.nextLine();
 
+		Customer customer = new Customer(null, name, address, phone, email, nationalID, dob, null);
+		customer.setUserName(phone);
+		// default password
+		customer.setUserPass("123");
 
 		UserDAO userDAO = new UserDAO();
-		userDAO.addUser(phone, "123", "customer");
-
-		User user = userDAO.findUser(phone);
-
-		Customer customer = new Customer(null, name, address, phone, email, nationalID, dob, user);
-		CustomerDAO customerDAO = new CustomerDAO();
-		
-		int result = 0;
-		if (customerDAO.addCustomer(customer) > 0) {
-			BankAccountDAO bankAccountDAO = new BankAccountDAO();
-			Long cusID = customerDAO.findCustomerID(phone).getCustomerId();
-			BankAccount bankAccount = new BankAccount(null, 0l, "bank", cusID);
-			result = bankAccountDAO.createBankAccount(bankAccount);
+		boolean createUserResult = userDAO.addUser(customer.getUserName(), customer.getUserPass(), "customer");
+		if (createUserResult) {
+			User user = userDAO.findUser(customer.getUserName());
+			if (user != null) {
+				customer.setUser(user);
+				CustomerDAO customerDAO = new CustomerDAO();
+				int createCustomerResult = customerDAO.addCustomer(customer);
+				if (createCustomerResult > 0) {
+					BankAccountDAO bankAccountDAO = new BankAccountDAO();
+					Long cusID = customerDAO.findCustomerID(customer.getCustomerPhone()).getCustomerId();
+					// default bank name is "bank"
+					BankAccount bankAccount = new BankAccount(null, 0l, "bank", cusID);
+					int result = bankAccountDAO.createBankAccount(bankAccount);
+					if (result > 0) {
+						System.out.println("Create bank account successfully");
+					} else {
+						System.out.println("Something wrong. Create bank account fail");
+					}
+				} else {
+					System.out.println("Something wrong. Cannot create customer account. Create bank account fail");
+				}
+			}
+		} else {
+			System.out.println("Something wrong. Cannot create user account. Create bank account fail");
 		}
-		System.out.println(result == 0 ? "create bank account fail" : "create bank account successfully");
 	}
 }
