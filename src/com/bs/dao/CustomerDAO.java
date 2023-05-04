@@ -1,13 +1,13 @@
 package com.bs.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.bs.model.Customer;
-import com.bs.model.User;
 import com.bs.util.DBUtil;
 
 public class CustomerDAO {
@@ -35,7 +35,7 @@ public class CustomerDAO {
 			preparedStatement.setString(5, customer.getCustomerEmail());
 			preparedStatement.setString(6, customer.getCustomerAddress());
 			preparedStatement.setLong(7, customer.getUser().getUserID());
-			
+
 			result = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class CustomerDAO {
 		}
 		return result;
 	}
-	
+
 	public Customer findCustomerID(String phone) {
 		Customer customer = null;
 		try {
@@ -73,4 +73,25 @@ public class CustomerDAO {
 		}
 		return customer;
 	}
+
+	public List<Customer> getAllCustomers() {
+		List<Customer> list = new ArrayList<>();
+		Customer customer = null;
+		try {
+			if (connection == null || connection.isClosed()) {
+				connection = DBUtil.getConnection();
+			}
+			preparedStatement = connection.prepareStatement(ICustomerQuery.GET_ALL_CUSTOMERS);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				customer = new Customer(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(7),
+						resultSet.getString(3), resultSet.getString(6), resultSet.getLong(4), resultSet.getDate(5));
+				list.add(customer);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

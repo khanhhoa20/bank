@@ -17,6 +17,7 @@ public class TestController {
 			System.out.println("1.Login");
 			System.out.println("2.Add user");
 			System.out.println("3.Create bank account");
+			System.out.println("4.View customer list");
 			System.out.println("9.Test sth");
 			System.out.println("10.Exit");
 
@@ -32,6 +33,10 @@ public class TestController {
 			}
 			case 3: {
 				CreateBankAccountController.createBankAccount();
+				break;
+			}
+			case 4: {
+				ViewCustomerListController.viewCusList();
 				break;
 			}
 			case 9: {

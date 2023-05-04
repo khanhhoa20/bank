@@ -13,12 +13,24 @@ public class Customer extends User {
 	private User user;
 
 	public Customer() {
-		
+
+	}
+
+	public Customer(Long customerId, String customerName, String customerAddress, String customerPhone,
+			String customerEmail, Long customerNationalId, Date customerDob) {
+
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.customerAddress = customerAddress;
+		this.customerPhone = customerPhone;
+		this.customerEmail = customerEmail;
+		this.customerNationalId = customerNationalId;
+		this.customerDob = customerDob;
 	}
 
 	public Customer(Long customerId, String customerName, String customerAddress, String customerPhone,
 			String customerEmail, Long customerNationalId, Date customerDob, User user) {
-	
+
 		this.customerId = customerId;
 		this.customerName = customerName;
 		this.customerAddress = customerAddress;
@@ -92,5 +104,5 @@ public class Customer extends User {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
 }
