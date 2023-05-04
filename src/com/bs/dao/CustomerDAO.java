@@ -94,4 +94,34 @@ public class CustomerDAO {
 		return list;
 	}
 
+	public int updateCustomer(Customer customer) {
+		try {
+			if (connection == null || connection.isClosed()) {
+				connection = DBUtil.getConnection();
+			}
+
+			preparedStatement = connection.prepareStatement(ICustomerQuery.UPDATE_CUSTOMER);
+
+			preparedStatement.setString(1, customer.getCustomerName());
+			preparedStatement.setDate(2, new java.sql.Date(customer.getCustomerDob().getTime()));
+			preparedStatement.setString(3, customer.getCustomerEmail());
+			preparedStatement.setString(4, customer.getCustomerAddress());
+			preparedStatement.setString(5, customer.getCustomerPhone());
+
+			result = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
+
 }
