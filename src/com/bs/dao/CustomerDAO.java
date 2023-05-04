@@ -10,6 +10,10 @@ import java.util.List;
 import com.bs.model.Customer;
 import com.bs.util.DBUtil;
 
+/**
+ * @author khánh hòa
+ *
+ */
 public class CustomerDAO {
 	Connection connection;
 	PreparedStatement preparedStatement;
@@ -65,6 +69,13 @@ public class CustomerDAO {
 			if (resultSet.next()) {
 				customer = new Customer();
 				customer.setCustomerId(resultSet.getLong(1));
+				customer.setCustomerPhone(resultSet.getString(3));
+				customer.setCustomerName(resultSet.getString(2));
+				customer.setCustomerNationalId(resultSet.getLong(4));
+				customer.setCustomerDob(resultSet.getDate(5));
+				customer.setCustomerEmail(resultSet.getString(6));
+				customer.setCustomerAddress(resultSet.getString(7));
+				customer.setUserID(resultSet.getLong(8));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -101,12 +112,10 @@ public class CustomerDAO {
 			}
 
 			preparedStatement = connection.prepareStatement(ICustomerQuery.UPDATE_CUSTOMER);
-
-			preparedStatement.setString(1, customer.getCustomerName());
-			preparedStatement.setDate(2, new java.sql.Date(customer.getCustomerDob().getTime()));
-			preparedStatement.setString(3, customer.getCustomerEmail());
-			preparedStatement.setString(4, customer.getCustomerAddress());
-			preparedStatement.setString(5, customer.getCustomerPhone());
+			preparedStatement.setDate(1, new java.sql.Date(customer.getCustomerDob().getTime()));
+			preparedStatement.setString(2, customer.getCustomerEmail());
+			preparedStatement.setString(3, customer.getCustomerAddress());
+			preparedStatement.setString(4, customer.getCustomerPhone());
 
 			result = preparedStatement.executeUpdate();
 		} catch (SQLException e) {

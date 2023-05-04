@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import com.bs.model.BankAccount;
 import com.bs.util.DBUtil;
 
+/**
+ * @author khánh hòa
+ *
+ */
 public class BankAccountDAO {
 	Connection connection;
 	PreparedStatement preparedStatement;

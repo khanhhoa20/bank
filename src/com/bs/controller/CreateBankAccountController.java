@@ -26,7 +26,7 @@ public class CreateBankAccountController {
 		System.out.println("Enter customer national id");
 		Long nationalID = Long.parseLong(sc.nextLine());
 		System.out.println("Enter customer date of birth(dd/mm/yyyy)");
-		SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date dob = null;
 		try {
 			dob = format.parse(sc.nextLine());
@@ -60,14 +60,14 @@ public class CreateBankAccountController {
 					if (result > 0) {
 						System.out.println("Create bank account successfully");
 					} else {
-						System.out.println("Something wrong. Create bank account fail");
+						System.out.println("Something wrong. Fail to create bank account");
 					}
 				} else {
-					System.out.println("Something wrong. Cannot create customer account. Create bank account fail");
+					System.out.println("Something wrong. Cannot create customer account. Fail to create bank account");
 				}
 			}
 		} else {
-			System.out.println("Something wrong. Cannot create user account. Create bank account fail");
+			System.out.println("Something wrong. Cannot create user account. Fail to create bank account");
 		}
 	}
 }
