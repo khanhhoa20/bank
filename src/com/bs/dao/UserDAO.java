@@ -1,5 +1,6 @@
 package com.bs.dao;
-//
+
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +8,10 @@ import java.sql.SQLException;
 
 import com.bs.util.DBUtil;
 
+/**
+ * @author khánh hòa
+ *
+ */
 public class UserDAO {
 	Connection connection;
 	PreparedStatement preparedStatement;
@@ -23,8 +28,7 @@ public class UserDAO {
 			if (connection == null || connection.isClosed()) {
 				connection = DBUtil.getConnection();
 			}
-			preparedStatement = connection
-					.prepareStatement(IUserQuery.SELECT_QUERY);
+			preparedStatement = connection.prepareStatement(IUserQuery.SELECT_QUERY);
 			preparedStatement.setString(1, username);
 			preparedStatement.setString(2, password);
 			resultSet = preparedStatement.executeQuery();
@@ -39,19 +43,20 @@ public class UserDAO {
 		}
 		return role;
 	}
-	public String addUser(String username, String password) {
-		String role = null;
+
+	public boolean addUser(String username, String password, String role) {
+		boolean resultAdd = false;
 		try {
 			if (connection == null || connection.isClosed()) {
 				connection = DBUtil.getConnection();
 			}
-			preparedStatement = connection
-					.prepareStatement(IUserQuery.SELECT_QUERY);
+			preparedStatement = connection.prepareStatement(IUserQuery.INSERT_QUERY);
 			preparedStatement.setString(1, username);
 			preparedStatement.setString(2, password);
-			resultSet = preparedStatement.executeQuery();
-			if (resultSet.next()) {
-				role = resultSet.getString(1);
+			preparedStatement.setString(3, role);
+			result = preparedStatement.executeUpdate();
+			if (result > 0) {
+				resultAdd = true;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -59,6 +64,6 @@ public class UserDAO {
 		} finally {
 			DBUtil.closeConnection();
 		}
-		return role;
+		return resultAdd;
 	}
 }

@@ -2,8 +2,12 @@ package com.bs.model;
 
 import java.util.Date;
 
+/**
+ * @author quang tuan
+ *
+ */
 public class SchedulePlan {
-	private int id;
+	private long id;
 	private String scheduleplandetail_info;
 	private String scheduleplan_description;
 	private String scheduleplan_name;
@@ -11,10 +15,10 @@ public class SchedulePlan {
 	private Date endDate;
 	private Date createDate;
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getScheduleplandetail_info() {
@@ -54,7 +58,7 @@ public class SchedulePlan {
 		this.createDate = createDate;
 	}
 	
-	public SchedulePlan(int id, String scheduleplandetail_info, String scheduleplan_description,
+	public SchedulePlan(long id, String scheduleplandetail_info, String scheduleplan_description,
 			String scheduleplan_name, Date startDate, Date endDate, Date createDate) {
 		super();
 		this.id = id;
@@ -76,7 +80,7 @@ public class SchedulePlan {
 		this.endDate = endDate;
 		this.createDate = createDate;
 	}
-
+	
 	public SchedulePlan() {
 		super();
 	}

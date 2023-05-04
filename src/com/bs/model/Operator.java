@@ -1,23 +1,21 @@
 package com.bs.model;
 
 public class Operator extends User {
-	private Integer id;
+	private Long operatorID;
 	private String operPhone;
 	private String operAddress;
 	private String operName;
 	private String userId;
-	private Integer departmentId;
-	
+	private Long departmentId;
+
 	public Operator() {
-		
+
 	}
 
-	
-	
-	public Operator(Integer id, String operPhone, String operAddress, String operName, String userId,
-			Integer departmentId) {
-		super();
-		this.id = id;
+	public Operator(Long operatorID, String operPhone, String operAddress, String operName, String userId,
+			Long departmentId) {
+
+		this.operatorID = operatorID;
 		this.operPhone = operPhone;
 		this.operAddress = operAddress;
 		this.operName = operName;
@@ -25,14 +23,12 @@ public class Operator extends User {
 		this.departmentId = departmentId;
 	}
 
-
-
-	public Integer getId() {
-		return id;
+	public Long getOperatorID() {
+		return operatorID;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setOperatorID(Long operatorID) {
+		this.operatorID = operatorID;
 	}
 
 	public String getOperPhone() {
@@ -67,13 +63,12 @@ public class Operator extends User {
 		this.userId = userId;
 	}
 
-	public int getDepartmentId() {
+	public Long getDepartmentId() {
 		return departmentId;
 	}
 
-	public void setDepartmentId(int departmentId) {
+	public void setDepartmentId(Long departmentId) {
 		this.departmentId = departmentId;
 	}
-	
-	
+
 }
