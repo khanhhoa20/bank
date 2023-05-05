@@ -2,71 +2,95 @@ package com.bs.model;
 
 import java.util.Date;
 
-public class Customer {
-	private long customerId;
+public class Customer extends User {
+	private Long customerId;
 	private String customerName;
-	private String address;
-	private String phoneNumber;
-	private String email;
-	private long nationalId;
-	private Date dateOfBirth;
-	private long user_id;
+	private String customerAddress;
+	private String customerPhone;
+	private String customerEmail;
+	private Long customerNationalId;
+	private Date customerDob;
+	private User user;
+
+	public Customer() {
+		
+	}
+
+	public Customer(Long customerId, String customerName, String customerAddress, String customerPhone,
+			String customerEmail, Long customerNationalId, Date customerDob, User user) {
 	
-	public long getCustomerId() {
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.customerAddress = customerAddress;
+		this.customerPhone = customerPhone;
+		this.customerEmail = customerEmail;
+		this.customerNationalId = customerNationalId;
+		this.customerDob = customerDob;
+		this.user = user;
+	}
+
+	public Long getCustomerId() {
 		return customerId;
 	}
-	public void setId(long customerId) {
+
+	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
+
 	public String getCustomerName() {
 		return customerName;
 	}
+
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-	public String getAddress() {
-		return address;
+
+	public String getCustomerAddress() {
+		return customerAddress;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+
+	public void setCustomerAddress(String customerAddress) {
+		this.customerAddress = customerAddress;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
+
+	public String getCustomerPhone() {
+		return customerPhone;
 	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+
+	public void setCustomerPhone(String customerPhone) {
+		this.customerPhone = customerPhone;
 	}
-	public String getEmail() {
-		return email;
+
+	public String getCustomerEmail() {
+		return customerEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
 	}
-	public long getNationalId() {
-		return nationalId;
+
+	public Long getCustomerNationalId() {
+		return customerNationalId;
 	}
-	public void setNationalId(long nationalId) {
-		this.nationalId = nationalId;
+
+	public void setCustomerNationalId(Long customerNationalId) {
+		this.customerNationalId = customerNationalId;
 	}
-	public Date getDateOfBirth() {
-		return dateOfBirth;
+
+	public Date getCustomerDob() {
+		return customerDob;
 	}
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+
+	public void setCustomerDob(Date customerDob) {
+		this.customerDob = customerDob;
 	}
-	
-	public Customer() {}
-	
-	public Customer(long customerId, String customerName, String address, String phoneNumber, String email, long nationalId, Date dateOfBirth, long user_id) {
-		this.customerId = customerId;
-		this.customerName = customerName;
-		this.address = address;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-		this.nationalId = nationalId;
-		this.dateOfBirth = dateOfBirth;
-		this.user_id = user_id;
+
+	public User getUser() {
+		return user;
 	}
-	
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 }

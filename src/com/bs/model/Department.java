@@ -1,29 +1,33 @@
 package com.bs.model;
 
 public class Department {
-	long id;
-	String department_name;
+private	Long departmentId;
+private	String departmentName;
 
-	public Department(long id, String department_name) {
-
-		this.id = id;
-		this.department_name = department_name;
+	public Long getDepartmentId() {
+		return departmentId;
 	}
 
-	public long getId() {
-		return id;
+	public void setDepartmentId(Long departmentId) {
+		this.departmentId = departmentId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public String getDepartmentName() {
+		return departmentName;
 	}
 
-	public String getName() {
-		return department_name;
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 
-	public void setName(String department_name) {
-		this.department_name = department_name;
+	public Department() {
+
+	}
+
+	public Department(Long departmentId, String departmentName) {
+		super();
+		this.departmentId = departmentId;
+		this.departmentName = departmentName;
 	}
 
 }

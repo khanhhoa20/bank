@@ -1,125 +1,84 @@
 package com.bs.model;
 
 public class Manager {
-	private long id;
-	private String man_phone, man_address, man_name, man_email;
-	private long user_id;
-	private long department_id;
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
+	private Long managerID;
+	private String managerPhone;
+	private String managerAddress;
+	private String managerEmail;
+	private String managerName;
+	private Long userId;
+	private Long departmentId;
+
+	public Manager() {
+
 	}
-	/**
-	 * @param id the id to set
-	 * @throws Exception 
-	 */
-	public void setId(long id) throws Exception {
-		if(id==0)
-			throw new Exception("Manager Id is left empty!");
-		this.id = id;
+
+	public Manager(Long managerID, String managerPhone, String managerAddress, String managerEmail, String managerName,
+			Long userId, Long departmentId) {
+
+		this.managerID = managerID;
+		this.managerPhone = managerPhone;
+		this.managerAddress = managerAddress;
+		this.managerEmail = managerEmail;
+		this.managerName = managerName;
+		this.userId = userId;
+		this.departmentId = departmentId;
 	}
-	/**
-	 * @return the man_phone
-	 */
-	public String getMan_phone() {
-		return man_phone;
+
+	public Long getManagerID() {
+		return managerID;
 	}
-	/**
-	 * @param man_phone the man_phone to set
-	 * @throws Exception 
-	 */
-	public void setMan_phone(String man_phone) throws Exception {
-		if(man_phone.isBlank())
-			throw new Exception("Manager phone is left empty!");
-		this.man_phone = man_phone;
+
+	public void setManagerID(Long managerID) {
+		this.managerID = managerID;
 	}
-	/**
-	 * @return the man_address
-	 */
-	public String getMan_address() {
-		return man_address;
+
+	public String getManagerPhone() {
+		return managerPhone;
 	}
-	/**
-	 * @param man_address the man_address to set
-	 * @throws Exception 
-	 */
-	public void setMan_address(String man_address) throws Exception {
-		if(man_address.isBlank())
-			throw new Exception("Manager Address is left empty");
-		this.man_address = man_address;
+
+	public void setManagerPhone(String managerPhone) {
+		this.managerPhone = managerPhone;
 	}
-	/**
-	 * @return the man_name
-	 */
-	public String getMan_name() {
-		return man_name;
+
+	public String getManagerAddress() {
+		return managerAddress;
 	}
-	/**
-	 * @param man_name the man_name to set
-	 * @throws Exception 
-	 */
-	public void setMan_name(String man_name) throws Exception {
-		if(man_name.isBlank())
-			throw new Exception("Manager name is left empty");
-		this.man_name = man_name;
+
+	public void setManagerAddress(String managerAddress) {
+		this.managerAddress = managerAddress;
 	}
-	/**
-	 * @return the man_email
-	 */
-	public String getMan_email() {
-		return man_email;
+
+	public String getManagerEmail() {
+		return managerEmail;
 	}
-	/**
-	 * @param man_email the man_email to set
-	 * @throws Exception 
-	 */
-	public void setMan_email(String man_email) throws Exception {
-		if(man_email.isBlank())
-			throw new Exception("Manager email address is left empty");
-		this.man_email = man_email;
+
+	public void setManagerEmail(String managerEmail) {
+		this.managerEmail = managerEmail;
 	}
-	/**
-	 * @return the user
-	 */
-	public long getUser_id() {
-		return user_id;
+
+	public String getManagerName() {
+		return managerName;
 	}
-	/**
-	 * @param user the user to set
-	 * @throws Exception 
-	 */
-	public void setUser_id(long user_id) throws Exception {
-		if(user_id==0)
-			throw new Exception("User is not found!");
-		this.user_id = user_id;
+
+	public void setManagerName(String managerName) {
+		this.managerName = managerName;
 	}
-	/**
-	 * @return the department
-	 */
-	public long getDepartment_id() {
-		return department_id;
+
+	public Long getUserId() {
+		return userId;
 	}
-	/**
-	 * @param department the department to set
-	 * @throws Exception 
-	 */
-	public void setDepartment_id(long department_id) throws Exception {
-		if(department_id==0)
-			throw new Exception("Department not found!");
-		this.department_id = department_id;
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
-	public Manager(long id, String man_phone, String man_address, String man_name, String man_email, long user_id,
-			long department_id) throws Exception {
-		setId(id);
-		setMan_address(man_address);
-		setMan_email(man_email);
-		setMan_name(man_name);
-		setMan_phone(man_phone);
-		setDepartment_id(department_id);
-		setUser_id(user_id);
+
+	public Long getDepartmentId() {
+		return departmentId;
 	}
-	
-	
+
+	public void setDepartmentId(Long departmentId) {
+		this.departmentId = departmentId;
+	}
+
 }
