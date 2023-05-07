@@ -29,7 +29,7 @@ public class OperatorDAO {
             String operName = resultSet.getString("oper_name");
             String userId = resultSet.getString("user_id");
             int departmentId = resultSet.getInt("department_id");
-            Operator operator = new Operator(id, operPhone, operAddress, operName, userId, departmentId);
+            Operator operator = new Operator();
             operators.add(operator);
         }
         return operators;
@@ -54,7 +54,7 @@ public class OperatorDAO {
             String operName = resultSet.getString("oper_name");
             String userId = resultSet.getString("user_id");
             int departmentId = resultSet.getInt("department_id");
-            Operator operator = new Operator(id, operPhone, operAddress, operName, userId, departmentId);
+            Operator operator = new Operator();
             return operator;
         }
         return null;
@@ -67,8 +67,8 @@ public class OperatorDAO {
         statement.setString(2, operator.getOperAddress());
         statement.setString(3, operator.getOperName());
         statement.setString(4, operator.getUserId());
-        statement.setInt(5, operator.getDepartmentId());
-        statement.setInt(6, operator.getId());
+        statement.setLong(5, operator.getDepartmentId());
+        statement.setLong(6, operator.getDepartmentId());
         int rowsAffected = statement.executeUpdate();
         return rowsAffected > 0;
     }

@@ -4,6 +4,7 @@ import com.bs.model.*;
 import com.bs.util.DBUtil;
 import java.util.*;
 import java.sql.*;
+import java.sql.Date;
 
 public class TransactionDAO {
 	Connection connection;
@@ -47,7 +48,7 @@ public class TransactionDAO {
 												resultSet.getDouble(5), resultSet.getDouble(6), resultSet.getLong(7));
 			}
 			return transaction;
-		} catch (ClassNotFoundException | SQLException e){
+		} catch ( SQLException e){
 			System.out.println(e);
 		} finally {
 			if(connection!=null)
@@ -67,7 +68,7 @@ public class TransactionDAO {
 
 			preparedStatement.setString(1, transaction.getTransactionType());
 			preparedStatement.setDouble(2, transaction.getTransactionAmount());
-			preparedStatement.setDate(3, transaction.getTransactionDate());
+			preparedStatement.setDate(3, (Date) transaction.getTransactionDate());
 			preparedStatement.setDouble(4, transaction.getBeforeTransaction());
 			preparedStatement.setDouble(5, transaction.getAfterTransaction());
 			preparedStatement.setLong(6, transaction.getBankAccountId());
@@ -97,7 +98,7 @@ public class TransactionDAO {
 			if (rs > 0) {
 				return true;
 			}
-		} catch (ClassNotFoundException | SQLException e){
+		} catch ( SQLException e){
 			System.out.println(e);
 		} finally {
 			if(connection!=null)

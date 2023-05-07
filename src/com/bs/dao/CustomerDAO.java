@@ -23,7 +23,7 @@ public class CustomerDAO {
 			st = connection.prepareStatement("SELECT * FROM customer");
 			rs = st.executeQuery();
 			while(rs.next()) {
-				customerList.add(new Customer(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getLong(6), rs.getTimestamp(7)));
+				customerList.add(new Customer(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getLong(6), rs.getTimestamp(7), null));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -50,12 +50,12 @@ public class CustomerDAO {
 		try {
 			st = connection.prepareStatement("INSERT INTO customer(cus_name, cus_phone, cus_national_id, cus_date_of_birth, cus_email, cus_address, user_id) VALUES(?,?,?,?,?,?,?)");
 			st.setString(1, customer.getCustomerName());
-			st.setString(2, customer.getPhoneNumber());
+			st.setString(2, customer.getCustomerPhone());
 			st.setLong(3, customer.getCustomerId());
-			st.setTimestamp(4, new java.sql.Timestamp(customer.getDateOfBirth().getTime()));
-			st.setString(5, customer.getEmail());
-			st.setString(6, customer.getAddress());
-			st.setLong(7, customer.getUser().getId());
+			st.setTimestamp(4, new java.sql.Timestamp(customer.getCustomerDob().getTime()));
+			st.setString(5, customer.getCustomerEmail());
+			st.setString(6, customer.getCustomerAddress());
+			st.setLong(7, customer.getUser().getUserID());
 			int result = st.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -80,12 +80,12 @@ public class CustomerDAO {
 		try {
 			st = connection.prepareStatement("UPDATE customer SET cus_name=?, cus_phone=?, cus_national_id=?, cus_date_of_birth=?, cus_email=?, cus_address=? WHERE id = ?");
 			st.setString(1, customer.getCustomerName());
-			st.setString(2, customer.getPhoneNumber());
-			st.setLong(3, customer.getNationalId());
-			st.setTime(4, new java.sql.Time(customer.getDateOfBirth().getTime()));
-			st.setString(5, customer.getEmail());
-			st.setString(6, customer.getAddress());
-			st.setLong(7, customer.getId());
+			st.setString(2, customer.getCustomerPhone());
+			st.setLong(3, customer.getCustomerNationalId());
+			st.setTime(4, new java.sql.Time(customer.getCustomerDob().getTime()));
+			st.setString(5, customer.getCustomerEmail());
+			st.setString(6, customer.getCustomerAddress());
+			st.setLong(7, customer.getCustomerId());
 			int result = st.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
