@@ -57,16 +57,50 @@ public class SchedulePlanHibernateController {
 				SchedulePlan_Hibernate newS=new SchedulePlan_Hibernate(detail, description, name, startDate, endDate, createDate);
 				schedulePlanDAO_Hibernate.insertSchedulePlan(newS);
 				break;
+			case 2:
+				System.out.println("Enter schedule_plan id");
+				id=Long.parseLong(br.readLine());
+				SchedulePlan_Hibernate sc = schedulePlanDAO_Hibernate.findById(id);
+				if(sc==null) {
+					System.out.println("schedule_plan not found");
+					break;
+				}
+				schedulePlanDAO_Hibernate.deleteSchedulePlan(sc);
+				break;
+			case 3:
+				System.out.println("Enter schedule_plan id");
+				id=Long.parseLong(br.readLine());
+				SchedulePlan_Hibernate findSchedule = schedulePlanDAO_Hibernate.findById(id);
+				if(findSchedule==null) {
+					System.out.println("schedule_plan not found");
+					break;
+				}
+				System.out.println("Enter name");
+				name=br.readLine();
+				System.out.println("Enter description");
+				description=br.readLine();
+				System.out.println("Enter detail info");
+				detail=br.readLine();
+				System.out.println("Enter start_date (dd/MM/yyyy)");
+				startDate = sdf.parse(br.readLine());
+				System.out.println("Enter end_date (dd/MM/yyyy)");
+				endDate = sdf.parse(br.readLine());
+				System.out.println("Enter create_date (dd/MM/yyyy)");
+				createDate = sdf.parse(br.readLine());
+				
+				findSchedule = new SchedulePlan_Hibernate(detail, description, name, startDate, endDate, createDate);
+				schedulePlanDAO_Hibernate.updateSchedulePlan(findSchedule);
+				break;
 			case 4:
 				List<SchedulePlan_Hibernate> list = schedulePlanDAO_Hibernate.listAllSchedulePlan();
 				if(list.isEmpty()) {
 					System.out.println("No schedule_plan found");
 					break;
 				}
-				System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s %s\n","SchedulePlan_id","Name","Description","Details","Start date", "End date", "Initial date");
+				System.out.printf("%-20s %-15s %-25s %-20s %-15s %-15s %s\n","SchedulePlan_id","Name","Description","Details","Start date", "End date", "Initial date");
 				for(Object o : list) {
 					SchedulePlan_Hibernate s=(SchedulePlan_Hibernate) o;
-					System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s %s\n", s.getId(), s.getScheduleplan_name(), s.getScheduleplan_description(), s.getScheduleplandetail_info(), sdf.format(s.getStartDate()), sdf.format(s.getEndDate()), sdf.format(s.getCreateDate()));
+					System.out.printf("%-20s %-15s %-25s %-20s %-15s %-15s %s\n", s.getId(), s.getScheduleplan_name(), s.getScheduleplan_description(), s.getScheduleplandetail_info(), sdf.format(s.getStartDate()), sdf.format(s.getEndDate()), sdf.format(s.getCreateDate()));
 				}
 				break;
 			case 5:

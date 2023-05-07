@@ -26,13 +26,13 @@ public class SchedulePlan_Hibernate {
 	@Column(name = "scheduleplan_name")
 	private String scheduleplan_name;
 	
-	@Column(name = "startDate")
+	@Column(name = "stardate")
 	private Date startDate;
 	
-	@Column(name = "endDate")
+	@Column(name = "enddate")
 	private Date endDate;
 	
-	@Column(name = "createDate")
+	@Column(name = "createdate")
 	private Date createDate;
 
 	public long getId() {
