@@ -84,6 +84,7 @@ public class SchedulePlanDepartmentDAO {
 	}
 	
 	public List<SchedulePlanDepartment> getAll() throws SQLException {
+//		System.out.print("111111");
 		Connection conn = DBUtil.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -92,6 +93,7 @@ public class SchedulePlanDepartmentDAO {
 			stmt = conn.prepareStatement("SELECT * FROM schedule_plan_department");
 			rs = stmt.executeQuery();
 			while (rs.next()) {
+				
 				SchedulePlanDepartment spd = new SchedulePlanDepartment();
 				spd.setDepartmentID(rs.getLong("department_id"));
 				spd.setSchedulePlanID(rs.getLong("schedule_plan_id"));
@@ -100,7 +102,7 @@ public class SchedulePlanDepartmentDAO {
 			}
 		} catch (SQLException e) {
 			// TODO: handle exception
-			System.out.print("Err findByDepartmentID");
+			System.out.print("Err getALL");
 		} finally {
 			DBUtil.closeConnection();
 		}

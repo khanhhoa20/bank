@@ -20,13 +20,11 @@ public class SchedulePlanDepartmentDAOHibernate {
 //	        this.sessionFactory = sessionFactory;
 //	    }
 
-	    @SuppressWarnings("unchecked")
 	    public void insert(SchedulePlanDepartment spd) {
 	    	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 			Session session = sessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
 	        try {
-	            transaction = session.beginTransaction();
 	            session.save(spd);
 	            transaction.commit();
 	        } catch (Exception e) {
@@ -92,7 +90,7 @@ public class SchedulePlanDepartmentDAOHibernate {
 			Session session = sessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
 	        try{
-	            Query query = session.createQuery("from SchedulePlanDepartment where schedule_plan_id = :schedulePlanId");
+	            Query query = session.createQuery("from schedule_plan_department where schedule_plan_id = :schedulePlanId");
 	            query.setParameter("schedulePlanId", schedulePlanId);
 	            return query.list();
 	        } catch (Exception e) {
