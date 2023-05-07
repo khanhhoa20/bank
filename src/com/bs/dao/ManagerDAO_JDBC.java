@@ -103,6 +103,8 @@ public class ManagerDAO_JDBC {
 												", man_address = "+manager.getManagerAddress()+
 												", man_email = "+manager.getManagerEmail()+
 												", man_name = "+manager.getManagerName()+
+							 					", user_id = "+manager.getUserId()+
+							 					", department_id = "+manager.getDepartmentId()+
 												" where id = "+manager.getManagerID());
 			connection.commit();
 		} catch (Exception e){
