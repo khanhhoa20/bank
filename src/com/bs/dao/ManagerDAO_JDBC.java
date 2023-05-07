@@ -1,17 +1,17 @@
 package com.bs.dao;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.bs.model.*;
+import com.bs.model.Manager;
 import com.bs.util.DBUtil;
 
 public class ManagerDAO_JDBC {
-	
 	Connection connection;
 	PreparedStatement preparedStatement;
 	ResultSet resultSet;
@@ -53,7 +53,7 @@ public class ManagerDAO_JDBC {
 						resultSet.getString(5), resultSet.getLong(6), resultSet.getLong(7));
 			}
 			return manager;
-		} catch (ClassNotFoundException | SQLException e){
+		} catch (SQLException e){
 			System.out.println(e);
 		} finally {
 			if(connection!=null)
@@ -128,7 +128,7 @@ public class ManagerDAO_JDBC {
 			if (rs > 0) {
 				return true;
 			}
-		} catch (ClassNotFoundException | SQLException e){
+		} catch (SQLException e){
 			System.out.println(e);
 		} finally {
 			if(connection!=null)

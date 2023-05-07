@@ -27,7 +27,7 @@ public class AddManagerController {
 		
 		boolean result = userDAO.addUser(username, password, role);
 		User user = new User();
-		user.setUserName(name);
+		user.setUserName(username);
 		user.setRole(role);
 		user.setUserPass(password);
 		
@@ -40,8 +40,9 @@ public class AddManagerController {
 		
 		System.out.println("Enter email");
 		String email = sc.nextLine();
+		
 		User user1 = userDAO.findUser(username);
-//		System.out.println(user1.getUserName());
+		System.out.println(user1.getUserID());
 		
 		Manager manager = new Manager();
 		manager.setManagerName(name);

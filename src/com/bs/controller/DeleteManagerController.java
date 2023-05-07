@@ -6,7 +6,7 @@ import com.bs.dao.ManagerDAOHibernate;
 import com.bs.dao.UserDAO;
 import com.bs.model.Manager;
 
-public class DeleteManager {
+public class DeleteManagerController {
 	public static void deleteManager() {
 		System.out.println("Enter manager id");
 		Scanner sc = new Scanner(System.in);

@@ -18,10 +18,9 @@ public class ManagerDAOHibernate {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		try {
-			session.save(manager);
+			session.saveOrUpdate(manager);
 			transaction.commit();
 		} catch (HibernateException e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
 			if (session!=null) {
