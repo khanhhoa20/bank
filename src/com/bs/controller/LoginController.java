@@ -9,7 +9,7 @@ import com.bs.dao.UserDAO;
  *
  */
 public class LoginController {
-	public static void login() {
+	public static String login() {
 		UserDAO userDAO = new UserDAO();
 		// phone number by default
 		System.out.println("Enter username");
@@ -24,5 +24,6 @@ public class LoginController {
 		} else {
 			System.out.println("Login failed");
 		}
+		return role;
 	}
 }
