@@ -22,6 +22,10 @@ public class SchedulePlanDepartmentDAO {
 			if (rowsAffected > 0) {
 				result = true;
 			}
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.print("Err insert");
 		} finally {
 			DBUtil.closeConnection();
 		}
@@ -45,6 +49,9 @@ public class SchedulePlanDepartmentDAO {
 				spd.setSchedulePlanID(rs.getLong("schedule_plan_id"));
 				list.add(spd);
 			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.print("Err find");
 		} finally {
 			DBUtil.closeConnection();
 		}
@@ -67,6 +74,33 @@ public class SchedulePlanDepartmentDAO {
 //	                spd.setDepartmentID(rs.getLong("department_id"));
 				list.add(spd);
 			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.print("Err findByDepartmentID");
+		} finally {
+			DBUtil.closeConnection();
+		}
+		return list;
+	}
+	
+	public List<SchedulePlanDepartment> getAll() throws SQLException {
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<SchedulePlanDepartment> list = new ArrayList<SchedulePlanDepartment>();
+		try {
+			stmt = conn.prepareStatement("SELECT * FROM schedule_plan_department");
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				SchedulePlanDepartment spd = new SchedulePlanDepartment();
+				spd.setDepartmentID(rs.getLong("department_id"));
+				spd.setSchedulePlanID(rs.getLong("schedule_plan_id"));
+//	                spd.setDepartmentID(rs.getLong("department_id"));
+				list.add(spd);
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.print("Err findByDepartmentID");
 		} finally {
 			DBUtil.closeConnection();
 		}
@@ -83,6 +117,9 @@ public class SchedulePlanDepartmentDAO {
 			stmt.setLong(1, spd.getDepartmentID());
 			stmt.setLong(2, spd.getSchedulePlanID());
 			rowsDeleted = stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.print("Err delete");
 		} finally {
 			DBUtil.closeConnection();
 		}
@@ -99,6 +136,9 @@ public class SchedulePlanDepartmentDAO {
 			stmt.setLong(1, spd.getSchedulePlanID());
 			stmt.setLong(2, spd.getDepartmentID());
 			rowsUpdated = stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.print("Err update");
 		} finally {
 			DBUtil.closeConnection();
 		}
