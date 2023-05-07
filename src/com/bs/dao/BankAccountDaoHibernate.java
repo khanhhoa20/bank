@@ -35,27 +35,46 @@ public class BankAccountDaoHibernate {
 		
 
 	}
-
-	public BankAccount updateBankAccount(BankAccount account) {
-		BankAccount account2 = null;
+	public BankAccountHibernateModel findAccount(long id)
+	{
+		BankAccountHibernateModel account2 = null;
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		try {
-
-			session.update(account);
+			account2 = (BankAccountHibernateModel) session.get(BankAccountHibernateModel.class, id);
 			transaction.commit();
 		} catch (Exception e) {
 			transaction.rollback();
 			e.printStackTrace();
 		}
-
 		return account2;
+	}
+
+	public int updateBankAccount(BankAccountHibernateModel accountHibernateModel) {
+		
+		int a = 0;
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		try {
+			
+			
+			session.update(accountHibernateModel);
+			transaction.commit();
+			a=1;
+			
+		} catch (Exception e) {
+			transaction.rollback();
+			a=2;
+			e.printStackTrace();
+		}
+
+		return a;
 
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<BankAccount> accounts() {
-		List<BankAccount> list = new ArrayList<>();
+	public List<BankAccountHibernateModel> accounts() {
+		List<BankAccountHibernateModel> list = new ArrayList<>();
 		Session session = sessionFactory.openSession();
 		Query query = (Query) session.createQuery("From BankAccount");
 		list = query.getResultList();
