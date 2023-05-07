@@ -5,3 +5,7 @@
 .idea/
 .metadata
 .worksheet
+hibernate_Jars
+ojdbc6 jar
+oracle.properties
+hibernate.cfg.xml
