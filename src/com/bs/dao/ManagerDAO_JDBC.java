@@ -52,7 +52,7 @@ public class ManagerDAO_JDBC {
 				manager  = new Manager(	resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), 
 						resultSet.getString(5), resultSet.getLong(6), resultSet.getLong(7));
 			}
-			return transaction;
+			return manager;
 		} catch (ClassNotFoundException | SQLException e){
 			System.out.println(e);
 		} finally {
