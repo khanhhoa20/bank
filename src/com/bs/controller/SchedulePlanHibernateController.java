@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import org.hibernate.Session;
 
 import com.bs.dao.SchedulePlanDAO_Hibernate;
-import com.bs.model.SchedulePlan_Hibernate;
+import com.bs.model.SchedulePlan;
 
 public class SchedulePlanHibernateController {
 	static BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
@@ -54,13 +54,13 @@ public class SchedulePlanHibernateController {
 				System.out.println("Enter create_date (dd/MM/yyyy)");
 				createDate = sdf.parse(br.readLine());
 				
-				SchedulePlan_Hibernate newS=new SchedulePlan_Hibernate(detail, description, name, startDate, endDate, createDate);
+				SchedulePlan newS=new SchedulePlan(detail, description, name, startDate, endDate, createDate);
 				schedulePlanDAO_Hibernate.insertSchedulePlan(newS);
 				break;
 			case 2:
 				System.out.println("Enter schedule_plan id");
 				id=Long.parseLong(br.readLine());
-				SchedulePlan_Hibernate sc = schedulePlanDAO_Hibernate.findById(id);
+				SchedulePlan sc = schedulePlanDAO_Hibernate.findById(id);
 				if(sc==null) {
 					System.out.println("schedule_plan not found");
 					break;
@@ -70,7 +70,7 @@ public class SchedulePlanHibernateController {
 			case 3:
 				System.out.println("Enter schedule_plan id");
 				id=Long.parseLong(br.readLine());
-				SchedulePlan_Hibernate findSchedule = schedulePlanDAO_Hibernate.findById(id);
+				SchedulePlan findSchedule = schedulePlanDAO_Hibernate.findById(id);
 				if(findSchedule==null) {
 					System.out.println("schedule_plan not found");
 					break;
@@ -88,18 +88,19 @@ public class SchedulePlanHibernateController {
 				System.out.println("Enter create_date (dd/MM/yyyy)");
 				createDate = sdf.parse(br.readLine());
 				
-				findSchedule = new SchedulePlan_Hibernate(detail, description, name, startDate, endDate, createDate);
+//				findSchedule = new SchedulePlan(detail, description, name, startDate, endDate, createDate);
+				findSchedule = new SchedulePlan(id, detail, description, name, startDate, endDate, createDate);
 				schedulePlanDAO_Hibernate.updateSchedulePlan(findSchedule);
 				break;
 			case 4:
-				List<SchedulePlan_Hibernate> list = schedulePlanDAO_Hibernate.listAllSchedulePlan();
+				List<SchedulePlan> list = schedulePlanDAO_Hibernate.listAllSchedulePlan();
 				if(list.isEmpty()) {
 					System.out.println("No schedule_plan found");
 					break;
 				}
 				System.out.printf("%-20s %-15s %-25s %-20s %-15s %-15s %s\n","SchedulePlan_id","Name","Description","Details","Start date", "End date", "Initial date");
 				for(Object o : list) {
-					SchedulePlan_Hibernate s=(SchedulePlan_Hibernate) o;
+					SchedulePlan s=(SchedulePlan) o;
 					System.out.printf("%-20s %-15s %-25s %-20s %-15s %-15s %s\n", s.getId(), s.getScheduleplan_name(), s.getScheduleplan_description(), s.getScheduleplandetail_info(), sdf.format(s.getStartDate()), sdf.format(s.getEndDate()), sdf.format(s.getCreateDate()));
 				}
 				break;

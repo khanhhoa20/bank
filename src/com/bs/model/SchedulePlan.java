@@ -1,9 +1,10 @@
 package com.bs.model;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,8 +14,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "schedule_plan")
-public class SchedulePlan_Hibernate {
+public class SchedulePlan {
 	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@Column(name = "scheduleplandetail_info")
@@ -91,7 +94,7 @@ public class SchedulePlan_Hibernate {
 		this.createDate = createDate;
 	}
 
-	public SchedulePlan_Hibernate(long id, String scheduleplandetail_info, String scheduleplan_description,
+	public SchedulePlan(long id, String scheduleplandetail_info, String scheduleplan_description,
 			String scheduleplan_name, Date startDate, Date endDate, Date createDate) {
 		super();
 		this.id = id;
@@ -103,7 +106,7 @@ public class SchedulePlan_Hibernate {
 		this.createDate = createDate;
 	}
 
-	public SchedulePlan_Hibernate(String scheduleplandetail_info, String scheduleplan_description,
+	public SchedulePlan(String scheduleplandetail_info, String scheduleplan_description,
 			String scheduleplan_name, Date startDate, Date endDate, Date createDate) {
 		super();
 		this.scheduleplandetail_info = scheduleplandetail_info;
@@ -114,7 +117,7 @@ public class SchedulePlan_Hibernate {
 		this.createDate = createDate;
 	}
 
-	public SchedulePlan_Hibernate() {
+	public SchedulePlan() {
 		super();
 	}
 	

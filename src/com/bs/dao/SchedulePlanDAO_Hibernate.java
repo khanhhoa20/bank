@@ -8,7 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.bs.model.SchedulePlan_Hibernate;
+import com.bs.model.SchedulePlan;
 import com.bs.util.HibernateUtil;
 
 public class SchedulePlanDAO_Hibernate {
@@ -17,7 +17,7 @@ public class SchedulePlanDAO_Hibernate {
 	Transaction transaction;
 	
 	//insert
-	public void insertSchedulePlan(SchedulePlan_Hibernate s) {
+	public void insertSchedulePlan(SchedulePlan s) {
 		sessionFactory = HibernateUtil.getSessionFactory();
         session = sessionFactory.openSession();
         Transaction transaction=session.beginTransaction();
@@ -35,13 +35,13 @@ public class SchedulePlanDAO_Hibernate {
 	}
 	
 	//del
-	public void deleteSchedulePlan(SchedulePlan_Hibernate s) {
+	public void deleteSchedulePlan(SchedulePlan s) {
 		sessionFactory = HibernateUtil.getSessionFactory();
 		session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		try {
 //			session.delete(item);
-			Query query = session.createQuery("delete from SchedulePlan_Hibernate where id=:scheduleId");
+			Query query = session.createQuery("delete from SchedulePlan where id=:scheduleId");
 			query.setParameter("scheduleId", s.getId());
 			
 			transaction.commit();
@@ -58,7 +58,7 @@ public class SchedulePlanDAO_Hibernate {
 	}
 	
 	//update
-	public void updateSchedulePlan(SchedulePlan_Hibernate s) {
+	public void updateSchedulePlan(SchedulePlan s) {
 		sessionFactory = HibernateUtil.getSessionFactory();
 		session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
@@ -75,12 +75,12 @@ public class SchedulePlanDAO_Hibernate {
 	}
 	
 	//find by id
-	public SchedulePlan_Hibernate findById(long id) {
+	public SchedulePlan findById(long id) {
     	sessionFactory=HibernateUtil.getSessionFactory();
     	session=sessionFactory.openSession();
-    	SchedulePlan_Hibernate s=null;
+    	SchedulePlan s=null;
     	try {
-			s = (SchedulePlan_Hibernate) session.get(SchedulePlan_Hibernate.class, id);
+			s = (SchedulePlan) session.get(SchedulePlan.class, id);
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		} finally {
@@ -95,9 +95,9 @@ public class SchedulePlanDAO_Hibernate {
     	sessionFactory=HibernateUtil.getSessionFactory();
     	session=sessionFactory.openSession();
     	transaction=session.beginTransaction();
-    	List<SchedulePlan_Hibernate> list=new ArrayList<>();
+    	List<SchedulePlan> list=new ArrayList<>();
     	try {
-        	Query query=session.createQuery("from SchedulePlan_Hibernate order by id ASC");
+        	Query query=session.createQuery("from SchedulePlan order by id ASC");
             list = query.list();
             transaction.commit();
         } catch (HibernateException e) {

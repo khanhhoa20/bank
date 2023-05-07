@@ -6,6 +6,6 @@
     <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
 
-    <mapping class="com.bs.model.SchedulePlan_Hibernate" />
+    <mapping class="com.bs.model.SchedulePlan" />
   </session-factory>
 </hibernate-configuration>
