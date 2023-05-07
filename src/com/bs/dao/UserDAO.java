@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.bs.model.User;
 import com.bs.util.DBUtil;
 
 /**
@@ -50,7 +51,7 @@ public class UserDAO {
 			if (connection == null || connection.isClosed()) {
 				connection = DBUtil.getConnection();
 			}
-			preparedStatement = connection.prepareStatement(IUserQuery.INSERT_QUERY);
+			preparedStatement = connection.prepareStatement("INSERT INTO \"user\" VALUES (null,?,?,?)");
 			preparedStatement.setString(1, username);
 			preparedStatement.setString(2, password);
 			preparedStatement.setString(3, role);
@@ -65,5 +66,28 @@ public class UserDAO {
 			DBUtil.closeConnection();
 		}
 		return resultAdd;
+	}
+	
+	public User findUser(String username) {
+		User user = null;
+		try {
+			if (connection == null || connection.isClosed()) {
+				connection = DBUtil.getConnection();
+			}
+
+			preparedStatement = connection.prepareStatement("SELECT * from \"user\" WHERE user_name=?");
+			preparedStatement.setString(1, username);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				user = new User(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3),
+						resultSet.getString(4));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection();
+		}
+		return user;
 	}
 }

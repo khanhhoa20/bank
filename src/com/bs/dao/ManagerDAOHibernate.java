@@ -18,7 +18,7 @@ public class ManagerDAOHibernate {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		try {
-			session.saveOrUpdate(manager);
+			session.save(manager);
 			transaction.commit();
 		} catch (HibernateException e) {
 			// TODO: handle exception
@@ -82,8 +82,21 @@ public class ManagerDAOHibernate {
 		return list;
 	}
 	
-	public void delete() {
-		
+	public void delete(Manager manager) {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		try {
+			session.delete(manager);
+			transaction.commit();
+		} catch (HibernateException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			if (session!=null) {
+				session.close();
+			}
+		}
 	}
 }
 

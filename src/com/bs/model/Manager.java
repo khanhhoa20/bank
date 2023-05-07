@@ -1,17 +1,18 @@
 package com.bs.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="manager")
 public class Manager {
 	@Id
-	@Column(name = "manager")
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long managerID;
 	@Column(name="man_phone")
 	private String managerPhone;
@@ -21,9 +22,11 @@ public class Manager {
 	private String managerEmail;
 	@Column(name="man_name")
 	private String managerName;
-	@OneToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+//	@OneToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+	@Column(name="user_id")
 	private Long userId;
-	@OneToOne(targetEntity = Department.class, cascade = CascadeType.ALL)
+//	@OneToOne(targetEntity = Department.class, cascade = CascadeType.ALL)
+	@Column(name="department_id")
 	private Long departmentId;
 
 	public Manager() {

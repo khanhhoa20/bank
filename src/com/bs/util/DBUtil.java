@@ -15,7 +15,7 @@ public class DBUtil {
 		String password = resourceBundle.getString("db.password");
 
 		try {
-			Class.forName(resourceBundle.getString("db.driver"));
+			Class.forName("oracle.jdbc.OracleDriver");
 			connection = DriverManager.getConnection(url, username, password);
 
 		} catch (ClassNotFoundException | SQLException e) {
