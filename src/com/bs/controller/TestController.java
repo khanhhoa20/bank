@@ -10,6 +10,7 @@ import com.bs.model.*;
 public class TestController {
 	public static void main(String[] args) {
 //		LoginController.login();
+
 		SchedulePlanDepartmentDAO schedulePlanDepartmentDAO = new SchedulePlanDepartmentDAO();
 		Scanner scanner = new Scanner(System.in);
 		SchedulePlanDepartment schedulePlanDepartment = new SchedulePlanDepartment(7, 4);
@@ -111,5 +112,6 @@ public class TestController {
 			
 
 		}
+
 	}
 }
