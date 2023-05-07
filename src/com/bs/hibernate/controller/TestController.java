@@ -1,13 +1,7 @@
-package com.bs.controller;
+package com.bs.hibernate.controller;
 
 import java.util.Scanner;
 
-import com.bs.dao.UserDAO;
-
-/**
- * @author khánh hòa
- *
- */
 public class TestController {
 	public static void main(String[] args) {
 
@@ -28,25 +22,8 @@ public class TestController {
 				choice = Integer.parseInt(sc.nextLine());
 
 				switch (choice) {
-				case 1: {
-					CreateBankAccountController.createBankAccount();
-					break;
-				}
-				case 2: {
-					ViewCustomerListController.viewCusList();
-					break;
-				}
-				case 3: {
-					UpdateCustomerController.updateCustomer();
-					break;
-				}
-				case 4: {
-					LockBankAccountController.lockBankAccount();
-					break;
-				}
-				case 9: {
-					UserDAO userDAO = new UserDAO();
-					System.out.println(userDAO.findUser("hoa"));
+				case 2:{
+					ViewCustomerListController.viewCustomerList();
 					break;
 				}
 				case 10: {
@@ -58,6 +35,8 @@ public class TestController {
 					break;
 				}
 			} while (choice != 10);
+		} else {
+			System.out.println("Wrong username or password");
 		}
 	}
 }
