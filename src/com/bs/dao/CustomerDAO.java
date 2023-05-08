@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class CustomerDAO {
 	}
 
 	public List<Customer> getAllCustomer() throws SQLException {
-		List<Customer> accounts = new ArrayList<Customer>();
-		Customer account = null;
+		List<Customer> customers = new ArrayList<Customer>();
+		Customer customer = null;
 		if (connection == null) {
 			connection = DBUtil.getConnection();
 		}
@@ -30,9 +31,8 @@ public class CustomerDAO {
 			preparedStatement = connection.prepareStatement(sql);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				account = new Customer(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3),
-						resultSet.getString(4), resultSet.getString(5), resultSet.getLong(5), resultSet.getDate(5), user);
-				accounts.add(account);
+				customer = new Customer(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3), resultSet.getLong(4), resultSet.getTimestamp(5), resultSet.getString(6), resultSet.getString(7));
+				customers.add(customer);
 			}
 
 		} catch (Exception e) {
@@ -48,23 +48,26 @@ public class CustomerDAO {
 				connection.close();
 			}
 		}
-		return accounts;
+		return customers;
 	}
 
-	public boolean UpdateCustomer(Customer account) throws SQLException {
+	public boolean UpdateCustomer(Customer customer) throws SQLException {
 		boolean a = false;
 		if (connection == null) {
 			connection = DBUtil.getConnection();
 		}
-		String sql = "UPDATE  bank_account b SET b.bank_name =?, b.balance=? WHERE b.id=?";
+		String sql = "UPDATE  customer c SET c.cusAddress =?, c.cusNationalId, c.cusDayOfBirth =?, c.cusEmail =?, c.cusName =? WHERE c.id=?";
 		PreparedStatement preparedStatement = null;
 		try {
 			connection.setAutoCommit(false);
 			preparedStatement = connection.prepareStatement(sql);
 			int n = preparedStatement.executeUpdate(sql);
-			preparedStatement.setString(1, account.getBankName());
-			preparedStatement.setLong(2, account.getBalance());
-			preparedStatement.setLong(3, account.getCustomerId());
+			preparedStatement.setString(1, customer.getCusAddress());
+			preparedStatement.setString(2, customer.getCusPhone());
+			preparedStatement.setLong(3, customer.getCusNationalId());
+			preparedStatement.setTimestamp(4, new Timestamp(customer.getCusDayOfBirth().getTime()));
+			preparedStatement.setString(5, customer.getCusEmail());
+			preparedStatement.setString(6, customer.getCusName());
 			if (n > 0) {
 				connection.commit();
 				a = true;
@@ -91,21 +94,23 @@ public class CustomerDAO {
 		return a;
 	}
 
-	public boolean InsertCustomer(Customer account) throws SQLException {
+	public boolean InsertCustomer(Customer customer) throws SQLException {
 		boolean a = false;
 		if (connection == null) {
 			connection = DBUtil.getConnection();
 		}
-		String sql = "INSERT INTO bank_account b VALUES(?,?,?,?)";
+		String sql = "INSERT INTO customer c VALUES(?,?,?,?,?)";
 		PreparedStatement preparedStatement = null;
 		try {
 			connection.setAutoCommit(false);
 			preparedStatement = connection.prepareStatement(sql);
 			int n = preparedStatement.executeUpdate(sql);
-			preparedStatement.setLong(1, account.getCustomerId());
-			preparedStatement.setLong(2, account.getBalance());
-			preparedStatement.setString(3, account.getBankName());
-			preparedStatement.setLong(4, account.getCusId());
+			preparedStatement.setString(1, customer.getCusPhone());
+			preparedStatement.setString(1, customer.getCusAddress());
+			preparedStatement.setLong(2, customer.getCusNationalId());
+			preparedStatement.setTimestamp(3, new Timestamp(customer.getCusDayOfBirth().getTime()));
+			preparedStatement.setString(4, customer.getCusEmail());
+			preparedStatement.setString(4, customer.getCusName());
 
 			if (n > 0) {
 				connection.commit();
@@ -133,11 +138,11 @@ public class CustomerDAO {
 	}
 	public Customer findById(long id) throws SQLException
 	{
-		Customer account = null;
+		Customer customer = null;
 		if (connection == null) {
 			connection = DBUtil.getConnection();
 		}
-		String sql = "SELECT * FROM  bank_account b where b.id=?";
+		String sql = "SELECT * FROM  customer c where c.id=?";
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
@@ -145,8 +150,7 @@ public class CustomerDAO {
 			preparedStatement.setLong(1, id);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
-				account = new Customer(resultSet.getLong(1), resultSet.getLong(2), resultSet.getString(3),
-						resultSet.getLong(4));
+				customer = new Customer(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3), resultSet.getLong(4), resultSet.getTimestamp(5),resultSet.getString(6),resultSet.getString(7));
 			}
 
 		} catch (Exception e) {
@@ -162,6 +166,6 @@ public class CustomerDAO {
 				connection.close();
 			}
 		}
-		return account;
+		return customer;
 	}
 }

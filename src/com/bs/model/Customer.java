@@ -2,95 +2,108 @@ package com.bs.model;
 
 import java.util.Date;
 
-public class Customer extends User {
-	private Long customerId;
-	private String customerName;
-	private String customerAddress;
-	private String customerPhone;
-	private String customerEmail;
-	private Long customerNationalId;
-	private Date customerDob;
-	private User user;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-	public Customer() {
-		
-	}
-
-	public Customer(Long customerId, String customerName, String customerAddress, String customerPhone,
-			String customerEmail, Long customerNationalId, Date customerDob, User user) {
+@Entity
+@Table(name = "customer")
+public class Customer {
+	@Id
+	private long id;
+	@Column(name = "cus_phone")
+	private String cusPhone;
+	@Column(name = "cus_address")
+	private String cusAddress;
+	@Column (name = "cus_national_id")
+	private Long cusNationalId;
+	@Column(name = "cus_dob")
+	private Date cusDayOfBirth;
+	@Column(name = "cus_email")
+	private String cusEmail;
+	@Column(name = "customer_name")
+	private String cusName;
 	
-		this.customerId = customerId;
-		this.customerName = customerName;
-		this.customerAddress = customerAddress;
-		this.customerPhone = customerPhone;
-		this.customerEmail = customerEmail;
-		this.customerNationalId = customerNationalId;
-		this.customerDob = customerDob;
-		this.user = user;
+	public Customer() {
+	}
+	
+	public Customer(Long id, String cusPhone, String cusAddress, Long cusNationalId, Date cusDayOfBirth,
+			String cusEmail, String cusName) {
+	
+		this.id = id;
+		this.cusAddress = cusAddress;
+		this.cusNationalId = cusNationalId;
+		this.cusDayOfBirth = cusDayOfBirth;
+		this.cusEmail = cusEmail;
+		this.cusName = cusName;
+//		this.user = user;
 	}
 
-	public Long getCustomerId() {
-		return customerId;
+	public long getId() {
+		return id;
 	}
-
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
+	public void setId(long id) {
+		this.id = id;
 	}
-
-	public String getCustomerName() {
-		return customerName;
+	
+	public String getCusPhone() {
+		return cusPhone;
 	}
-
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	
+	public void setCusPhone(String cusPhone) {
+		this.cusPhone = cusPhone;
 	}
-
-	public String getCustomerAddress() {
-		return customerAddress;
+	public String getCusAddress() {
+		return cusAddress;
 	}
-
-	public void setCustomerAddress(String customerAddress) {
-		this.customerAddress = customerAddress;
+	public void setCusAddress(String cusAddress) {
+		this.cusAddress = cusAddress;
 	}
-
-	public String getCustomerPhone() {
-		return customerPhone;
+	public Long getCusNationalId() {
+		return cusNationalId;
 	}
-
-	public void setCustomerPhone(String customerPhone) {
-		this.customerPhone = customerPhone;
+	public void setCusNationalId(Long cusNationalId) {
+		this.cusNationalId = cusNationalId;
 	}
-
-	public String getCustomerEmail() {
-		return customerEmail;
+	public Date getCusDayOfBirth() {
+		return cusDayOfBirth;
 	}
-
-	public void setCustomerEmail(String customerEmail) {
-		this.customerEmail = customerEmail;
+	public void setCusDayOfBirth(Date cusDayOfBirth) {
+		this.cusDayOfBirth = cusDayOfBirth;
 	}
-
-	public Long getCustomerNationalId() {
-		return customerNationalId;
+	public String getCusEmail() {
+		return cusEmail;
 	}
-
-	public void setCustomerNationalId(Long customerNationalId) {
-		this.customerNationalId = customerNationalId;
+	public void setCusEmail(String cusEmail) {
+		this.cusEmail = cusEmail;
 	}
-
-	public Date getCustomerDob() {
-		return customerDob;
+	public String getCusName() {
+		return cusName;
 	}
-
-	public void setCustomerDob(Date customerDob) {
-		this.customerDob = customerDob;
+	public void setCusName(String cusName) {
+		this.cusName = cusName;
 	}
-
 	public User getUser() {
 		return user;
 	}
-
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public BankAccount getAccount() {
+		return account;
+	}
+	public void setAccount(BankAccount account) {
+		this.account = account;
+	}
+	@OneToOne(cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "id")
+	private User user;
+	@OneToOne(mappedBy = "customer")
+	private BankAccount account;
 	
 }
