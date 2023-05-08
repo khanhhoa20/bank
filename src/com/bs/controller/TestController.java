@@ -2,6 +2,7 @@ package com.bs.controller;
 
 import java.util.Scanner;
 
+import com.bs.dao.CustomerDAO;
 import com.bs.dao.UserDAO;
 
 /**
@@ -22,6 +23,7 @@ public class TestController {
 				System.out.println("2.View customer list");
 				System.out.println("3.Update customer information");
 				System.out.println("4.Lock bank account");
+				System.out.println("5.Withdraw money");
 				System.out.println("9.Test sth");
 				System.out.println("10.Exit");
 
@@ -44,9 +46,13 @@ public class TestController {
 					LockBankAccountController.lockBankAccount();
 					break;
 				}
+				case 5: {
+					WithdrawMoneyController.withdrawMoney();
+					break;
+				}
 				case 9: {
-					UserDAO userDAO = new UserDAO();
-					System.out.println(userDAO.findUser("hoa"));
+					CustomerDAO customerDAO = new CustomerDAO();
+				System.out.println(customerDAO.checkLock("0456231587"));	
 					break;
 				}
 				case 10: {

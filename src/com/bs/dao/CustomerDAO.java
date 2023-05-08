@@ -121,16 +121,34 @@ public class CustomerDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
+			DBUtil.closeConnection();
 		}
 		return result;
+	}
+
+	public String checkLock(String phone) {
+		String lock = "none";
+		try {
+			if (connection == null || connection.isClosed()) {
+				connection = DBUtil.getConnection();
+			}
+
+			preparedStatement = connection.prepareStatement(ICustomerQuery.CHECK_LOCK);
+			preparedStatement.setString(1, phone);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				lock = resultSet.getString(1);
+			}
+//			System.out.println("1" + lock);
+			if (lock ==null)
+				lock = "none";
+//			System.out.println("2" + lock);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection();
+		}
+		return lock;
 	}
 
 }
