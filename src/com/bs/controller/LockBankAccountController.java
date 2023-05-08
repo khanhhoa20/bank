@@ -5,6 +5,10 @@ import java.util.Scanner;
 import com.bs.dao.CustomerDAO;
 import com.bs.dao.LockBankAccountDAO;
 
+/**
+ * @author khánh hòa
+ *
+ */
 public class LockBankAccountController {
 	public static void lockBankAccount() {
 		Scanner sc = new Scanner(System.in);

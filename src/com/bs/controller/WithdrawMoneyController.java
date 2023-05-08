@@ -5,6 +5,10 @@ import java.util.Scanner;
 import com.bs.dao.BankAccountDAO;
 import com.bs.dao.CustomerDAO;
 
+/**
+ * @author khánh hòa
+ *
+ */
 public class WithdrawMoneyController {
 	public static void withdrawMoney() {
 		System.out.println("Enter customer phone");

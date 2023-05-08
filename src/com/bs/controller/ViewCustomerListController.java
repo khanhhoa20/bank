@@ -5,6 +5,10 @@ import java.util.List;
 import com.bs.dao.CustomerDAO;
 import com.bs.model.Customer;
 
+/**
+ * @author khánh hòa
+ *
+ */
 public class ViewCustomerListController {
 	public static void viewCusList() {
 		System.out.println("List of customer:");

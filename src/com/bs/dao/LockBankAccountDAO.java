@@ -7,6 +7,10 @@ import java.sql.SQLException;
 
 import com.bs.util.DBUtil;
 
+/**
+ * @author khánh hòa
+ *
+ */
 public class LockBankAccountDAO {
 	Connection connection;
 	PreparedStatement preparedStatement;
