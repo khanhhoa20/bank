@@ -24,6 +24,7 @@ public class TestController {
 				System.out.println("3.Update customer information");
 				System.out.println("4.Lock bank account");
 				System.out.println("5.Withdraw money");
+				System.out.println("6.Deposit money");
 				System.out.println("9.Test sth");
 				System.out.println("10.Exit");
 
@@ -48,6 +49,10 @@ public class TestController {
 				}
 				case 5: {
 					WithdrawMoneyController.withdrawMoney();
+					break;
+				}
+				case 6: {
+					DepositMoneyController.depositMoney();
 					break;
 				}
 				case 9: {

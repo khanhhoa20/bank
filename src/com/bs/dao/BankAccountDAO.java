@@ -62,6 +62,25 @@ public class BankAccountDAO {
 		}
 		return result > 0 ? true : false;
 	}
+	
+	public boolean depositMoney(Long balance, Long money, String phone) {
+		try {
+			if (connection == null || connection.isClosed()) {
+				connection = DBUtil.getConnection();
+			}
+
+			preparedStatement = connection.prepareStatement(IBankAccountQuery.DEPOSIT_MONEY);
+			preparedStatement.setLong(1, (balance + money));
+			preparedStatement.setString(2, phone);
+			result = preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection();
+		}
+		return result > 0 ? true : false;
+	}
 
 	public Long getBalance(String phone) {
 		Long balance = 0l;
