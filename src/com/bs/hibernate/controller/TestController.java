@@ -1,14 +1,7 @@
-package com.bs.controller;
+package com.bs.hibernate.controller;
 
 import java.util.Scanner;
 
-import com.bs.dao.CustomerDAO;
-import com.bs.dao.UserDAO;
-
-/**
- * @author khánh hòa
- *
- */
 public class TestController {
 	public static void main(String[] args) {
 
@@ -23,41 +16,14 @@ public class TestController {
 				System.out.println("2.View customer list");
 				System.out.println("3.Update customer information");
 				System.out.println("4.Lock bank account");
-				System.out.println("5.Withdraw money");
-				System.out.println("6.Deposit money");
 				System.out.println("9.Test sth");
 				System.out.println("10.Exit");
 
 				choice = Integer.parseInt(sc.nextLine());
 
 				switch (choice) {
-				case 1: {
-					CreateBankAccountController.createBankAccount();
-					break;
-				}
-				case 2: {
-					ViewCustomerListController.viewCusList();
-					break;
-				}
-				case 3: {
-					UpdateCustomerController.updateCustomer();
-					break;
-				}
-				case 4: {
-					LockBankAccountController.lockBankAccount();
-					break;
-				}
-				case 5: {
-					WithdrawMoneyController.withdrawMoney();
-					break;
-				}
-				case 6: {
-					DepositMoneyController.depositMoney();
-					break;
-				}
-				case 9: {
-					CustomerDAO customerDAO = new CustomerDAO();
-				System.out.println(customerDAO.checkLock("0456231587"));	
+				case 2:{
+					ViewCustomerListController.viewCustomerList();
 					break;
 				}
 				case 10: {
@@ -69,6 +35,8 @@ public class TestController {
 					break;
 				}
 			} while (choice != 10);
+		} else {
+			System.out.println("Wrong username or password");
 		}
 	}
 }

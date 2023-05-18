@@ -1,15 +1,45 @@
-package com.bs.model;
+package com.bs.hibernate.model;
 
 import java.util.Date;
 
-public class Customer extends User {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name="customer")
+public class Customer {
+	@Id
+	@Column(name="id")
 	private Long customerId;
+	
+	@Column(name="cus_name")
 	private String customerName;
+	
+	@Column(name="cus_address")
 	private String customerAddress;
+	
+	@Column(name="cus_phone")
 	private String customerPhone;
+	
+	@Column(name="cus_email")
 	private String customerEmail;
+	
+	@Column(name="cus_national_id")
 	private Long customerNationalId;
+	
+	@Column(name="cus_date_of_birth")
+	@Temporal(TemporalType.DATE)
 	private Date customerDob;
+	
+	@OneToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+	@JoinColumn(name="user_id",referencedColumnName = "id")
 	private User user;
 
 	public Customer() {

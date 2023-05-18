@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * @author khánh hòa
+ *
+ */
 public class DBUtil {
 	static Connection connection;
 
