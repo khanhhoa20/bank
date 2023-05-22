@@ -1,11 +1,14 @@
 package com.bs.dao;
 
 import java.util.*;
+import com.bs.model.Department;
+import com.bs.util.DBUtil;
+import java.sql.PreparedStatement;
 import java.sql.*;
 
 public class DepartmentDAO {
 	Connection connection;
-	PrepareStatement preparedStatement;
+	PreparedStatement preparedStatement;
 	ResultSet resultSet; 
 	
 	public List<Department> getAllDepartment(){
@@ -14,14 +17,14 @@ public class DepartmentDAO {
 		 Department department = null;
 		try {
 			String sql = "SELECT * FROM department";
-			connection = DBConnection.getConnection();
+			connection = DBUtil.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
-				department  = new Department(resultSet.getString(1));
+				department  = new Department(resultSet.getLong(1),resultSet.getString(2));
 				departmentList.add(department);
 			}
-		} catch (ClassNotFoundException | SQLException e){
+		} catch (SQLException e){
 			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
@@ -35,16 +38,16 @@ public class DepartmentDAO {
         return departmentList;
 	}
 	
-	public void insertDepartment(){
+	public void insertDepartment(Department department){
 		connection = null;
-		Department department = null;
+		
 		try {
-			connection = DBConection.getConnection();
+			connection = DBUtil.getConnection();
 			String sql = "INSERT INTO department VALUES(?)";
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1,department.getName());
+			preparedStatement.setString(1,department.getDepartmentName());
 			int result = preparedStatement.executeUpdate();
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
@@ -57,17 +60,17 @@ public class DepartmentDAO {
 			}
 	}
 	
-	public void updateDepartment() {
+	public void updateDepartment(Department department) {
 		connection = null;
-		Department department = null;
+
 		try {
-			connection = DBConection.getConnection();
+			connection = DBUtil.getConnection();
 			String sql = "UPDATE department SET department_name=?  WHERE id=?";
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInteger(1,department.getId());
-			preparedStatement.setString(2,department.getName());
+			preparedStatement.setLong(1,department.getDepartmentId());
+			preparedStatement.setString(2,department.getDepartmentName());
 			int result = preparedStatement.executeUpdate();
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
@@ -80,17 +83,17 @@ public class DepartmentDAO {
 			}
 	}
 	
-	public boolean deleteDepartment() {
-		Department department = null;
+	public boolean deleteDepartment(Department department) {
+
 		try {
 			String sql ="DELETE FROM department WHERE id =?";
-			connection = DBConnection.getConnection();
+			connection = DBUtil.getConnection();
 			Statement statement = connection.createStatement();
-			int result = statement.executeUpdate(sql)
+			int result = statement.executeUpdate(sql);
 			if (result > 0) {
 				return true;
 			}
-		} catch (ClassNotFoundException | SQLException e){
+		} catch (SQLException e){
 			System.out.println(e);
 		} finally {
 			if(connection!=null)
